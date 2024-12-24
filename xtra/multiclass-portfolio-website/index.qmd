@@ -1,0 +1,70 @@
+---
+title: "About me"
+---
+
+# What to include in an about me page 
+
+A well-crafted "About Me" page on a professional website can help you make a great first impression, build trust, and showcase your expertise. Here are some elements to consider including:
+
+### 1. Professional Overview
+   - Introduction: Briefly introduce who you are and your current professional role.
+   - Elevator Pitch: A concise summary of what you do, highlighting your expertise and key value proposition.
+
+### 2. Skills and Expertise
+   - Focus on your core competencies relevant to your profession.
+   - Highlight any unique skills that set you apart (e.g., specific software tools, methodologies, or technical skills like computational materials science, DFT, or data analysis).
+
+### 3. Professional Journey
+   - Share key career milestones or the path that led you to your current role.
+   - If relevant, mention any notable projects or achievements that demonstrate your capabilities.
+
+### 4. Personal Values and Work Philosophy
+   - Describe your approach to work (e.g., problem-solving, attention to detail, innovation).
+   - You can also share professional values that guide your work (e.g., collaboration, continuous learning).
+
+### 5. Educational Background
+   - Include your education (relevant degrees, certifications, or special training).
+   - Mention any industry-related courses or continued learning, especially if they align with your expertise.
+
+### 6. Achievements and Recognition
+   - Highlight awards, publications, or recognitions that establish your credibility.
+   - You can also share high-profile clients or collaborations if applicable.
+
+### 7. Personal Touch
+   - A brief mention of your interests or hobbies can humanize you and help people relate (e.g., travel, technology, or even something like automotive repair if that’s a notable interest).
+
+### 8. Call to Action
+   - Invite visitors to connect with you by providing links to your LinkedIn, GitHub, or other relevant profiles.
+   - Encourage them to reach out for professional inquiries or collaboration opportunities.
+
+### 9. Visuals (Optional)
+   - Consider adding a professional headshot to make the page more personable.
+   - Some people include a few work-related photos or portfolio samples.
+
+### Tips:
+   - Keep the tone authentic and approachable.
+   - Avoid jargon unless it's crucial for your industry, but still ensure that non-experts can follow along.
+   - Balance professional and personal elements to showcase both your skills and personality.
+
+Would you like to expand on any of these sections based on your specific professional focus?
+
+
+# Example
+:::: {.columns}
+
+::: {.column width="45%"}
+
+James Hickman is an Assistant Teaching Professor in the Data Science and Analytics program at Georgetown University. He received his Ph.D. in Computational-Physics from George Mason University (GMU) in 2017, an M.S. in Engineering-Physics from GMU in 2014, and a double-major in Physics and Applied Mathematics from Shippensburg University in 2011. His graduate work focused on applying classical atomistic simulations to various material science and condensed matter physics problems. In 2018, he was awarded an NRC postdoctoral fellowship at the National Institute of Standards and Technology (NIST) in Gaithersburg, Maryland. Dr. Hickman’s post-doctoral research focused on improving inter-atomic bonding models for both metallic and covalent systems. This was done by combining the transferability of physically derived approaches with the flexibility of artificial neural networks. These perturbative hybrid models achieve near quantum accuracy in their training region while exhibiting physical extrapolation outside the training domain. Dr. Hickman continues at NIST as a guest researcher, where he focuses on problems at the intersection of machine learning and material science.
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="45%"}
+
+![](images/2024-10-14-16-56-34.png)
+
+:::
+
+::::

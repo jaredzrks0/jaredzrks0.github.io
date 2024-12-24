@@ -1,0 +1,24 @@
+---
+title: "LLM usage log"
+---
+
+
+This page can serve as a "catch-all" for LLM use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.
+
+LLM tools were not used often during this project, but did have some contributions as small issues arose. Below is the way they were used:
+
+
+## Writing: 
+
+* Generated project title ideas
+
+## Code: 
+
+* For general information in the data collection process on using BeautifulSoup for scraping commented HTML.
+* For general information on fixing/rewriting git branch after large data file pushed
+* Developed a function to decode names back into utf-8
+* For writing a line of code to drop/select many specific columns from DataFrames
+* For formatting large markdown tables
+* Helped to debug 3d plotly rendering issues
+* For formatting supervised learning results into dataframes
+

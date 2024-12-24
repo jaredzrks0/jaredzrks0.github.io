@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Cleaning – DSAN-5000: Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/gu-logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d1b12f2568ecbe55642fee6aa00bd082.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-b2511bcbb01c2159fd96a78deb42ffd9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">DSAN-5000: Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about-me.html"> 
+<span class="menu-text">About the Author</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Project Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../report/report.html"> 
+<span class="menu-text">Report</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-technical-details" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Technical details</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-technical-details">    
+        <li>
+    <a class="dropdown-item" href="../../technical-details/data-collection/main.html">
+ <span class="dropdown-text">Data-collection</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../technical-details/data-cleaning/main.html">
+ <span class="dropdown-text">Data-cleaning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../technical-details/eda/main.html">
+ <span class="dropdown-text">Exploratory Data Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../technical-details/unsupervised-learning/main.html">
+ <span class="dropdown-text">Unsupervised Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../technical-details/supervised-learning/main.html">
+ <span class="dropdown-text">Supervised Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../technical-details/progress-log.html">
+ <span class="dropdown-text">Progress Log</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../technical-details/llm-usage-log.html">
+ <span class="dropdown-text">LLM usage Log</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#reading-in-raw-data" id="toc-reading-in-raw-data" class="nav-link" data-scroll-target="#reading-in-raw-data">Reading in Raw Data</a></li>
+  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
+  <li><a href="#final-dataset-building" id="toc-final-dataset-building" class="nav-link" data-scroll-target="#final-dataset-building">Final Dataset Building</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Cleaning</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>Like any project, cleaning our raw data collected in the prior step is critical to ensuring we have a dataset that can be explored and modeled to extract insights. In this section, we read in the raw scraped data, and process in the following steps:</p>
+<ul>
+<li>Reading in all the scraped data</li>
+<li>Looking carefully through each dataset and:
+<ul>
+<li>Ensuring data is read in properly</li>
+<li>Checking for and potentially removing missing values</li>
+<li>Dropping unnecessary columns that do not relate to the research questions</li>
+<li>Creating new features for for analysis</li>
+<li>Merging datasets together into a singular final dataset each for batters and pitchers</li>
+</ul></li>
+</ul>
+</section>
+<section id="code" class="level1">
+<h1>Code</h1>
+<p>Provide the source code used for this section of the project here.</p>
+<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
+<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
+<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
+<div id="cell-3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General Imports</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle <span class="im">as</span> pkl</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> SimpleImputer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="reading-in-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-in-raw-data">Reading in Raw Data</h2>
+<div id="cell-5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in our datasets individually</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>all_inductees_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/all_hof_inductees_table.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/yearly_hof_voting_data.csv'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>all_player_info <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/all_player_info.csv'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'../../data/raw-data/all_player_stats.pkl'</span>, <span class="st">'rb'</span>) <span class="im">as</span> fpath:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    all_player_stats_dict <span class="op">=</span> pkl.load(fpath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because we scraped our player stats into a dictionary with keys for each player, we next split this dictionary into DataFrames for each key type - Career Stats, Annual Stats, and Appearences by Position. While doing this, we also attatch the ID from the dictionary key into the underlying DataFrame so that we don’t lose the connection</p>
+<div id="cell-7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the list of all player IDs scraped</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ids <span class="op">=</span> <span class="bu">list</span>(all_player_stats_dict.keys())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">id</span> <span class="kw">in</span> ids:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(all_player_stats_dict[<span class="bu">id</span>], <span class="bu">dict</span>):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        all_player_stats_dict[<span class="bu">id</span>].get(<span class="st">'career_stats'</span>)[<span class="st">'player_id'</span>] <span class="op">=</span> <span class="bu">id</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        all_player_stats_dict[<span class="bu">id</span>].get(<span class="st">'annual_stats'</span>)[<span class="st">'player_id'</span>] <span class="op">=</span> <span class="bu">id</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        all_player_stats_dict[<span class="bu">id</span>].get(<span class="st">'appearances'</span>)[<span class="st">'player_id'</span>] <span class="op">=</span> <span class="bu">id</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of each DataFrame stored within each ID, accounting for the occurence of Non-dictionaries when scraping fails</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>all_player_career_stats <span class="op">=</span> [all_player_stats_dict[player_id].get(<span class="st">'career_stats'</span>) <span class="cf">if</span> <span class="bu">isinstance</span>(all_player_stats_dict[player_id], <span class="bu">dict</span>) <span class="cf">else</span> <span class="va">None</span> <span class="cf">for</span> player_id <span class="kw">in</span> ids]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>all_player_annual_stats <span class="op">=</span> [all_player_stats_dict[player_id].get(<span class="st">'annual_stats'</span>) <span class="cf">if</span> <span class="bu">isinstance</span>(all_player_stats_dict[player_id], <span class="bu">dict</span>) <span class="cf">else</span> <span class="va">None</span> <span class="cf">for</span> player_id <span class="kw">in</span> ids]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>all_player_career_appearences <span class="op">=</span> [all_player_stats_dict[player_id].get(<span class="st">'appearances'</span>)<span class="cf">if</span> <span class="bu">isinstance</span>(all_player_stats_dict[player_id], <span class="bu">dict</span>) <span class="cf">else</span> <span class="va">None</span> <span class="cf">for</span> player_id <span class="kw">in</span> ids]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cleaning-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
+<section id="all-inducted-players-dataframe" class="level4">
+<h4 class="anchored" data-anchor-id="all-inducted-players-dataframe">All Inducted Players DataFrame</h4>
+<p>Working through our DataFrames, we start with the <strong>DataFrame holding all succesfully inducted players</strong>. Start by taking a glance at the first few rows of the data.</p>
+<div id="cell-11" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>all_inductees_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">voting_year</th>
+<th data-quarto-table-cell-role="th">player</th>
+<th data-quarto-table-cell-role="th">living_status</th>
+<th data-quarto-table-cell-role="th">voting_body</th>
+<th data-quarto-table-cell-role="th">inducted_as</th>
+<th data-quarto-table-cell-role="th">votes</th>
+<th data-quarto-table-cell-role="th">vote_percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2024</td>
+<td>Adrian BeltrÃ©</td>
+<td>1979-Living</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>366.0</td>
+<td>95.1%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2024</td>
+<td>Todd Helton</td>
+<td>1973-Living</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>307.0</td>
+<td>79.7%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2024</td>
+<td>Jim Leyland</td>
+<td>1944-Living</td>
+<td>Contemporary Baseball Era Non-Players</td>
+<td>Manager</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2024</td>
+<td>Joe Mauer</td>
+<td>1983-Living</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>293.0</td>
+<td>76.1%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2023</td>
+<td>Fred McGriff</td>
+<td>1963-Living</td>
+<td>Contemporary Baseball Era</td>
+<td>Player</td>
+<td>16.0</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We observe a few necessary fixes for the table, including:</p>
+<ul>
+<li>Player names not properly encoded</li>
+<li>Voting bodies other than BBWAA</li>
+<li>Non-Players included via non-BBWAA methods</li>
+<li>NaN values for vote tallies for non-BBWAA methods</li>
+</ul>
+<p>Additionally, there are some cosmetic alterations we can make, including:</p>
+<ul>
+<li>Removing the living status, which we will not use for further analysis</li>
+</ul>
+<div id="cell-13" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Clean the all_inductees_df DataFrame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function for encoding the player names</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decode_player_name(name):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    encoded_name <span class="op">=</span> name.encode(<span class="st">'latin-1'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    corrected_name <span class="op">=</span> encoded_name.decode(<span class="st">'utf-8'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corrected_name.strip()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Encode the player names</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>all_inductees_df.player <span class="op">=</span> all_inductees_df.player.<span class="bu">apply</span>(decode_player_name)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to only BBWAA votes</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>all_inductees_df <span class="op">=</span> all_inductees_df[all_inductees_df.voting_body <span class="op">==</span> <span class="st">'BBWAA'</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the living status column</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>all_inductees_df <span class="op">=</span> all_inductees_df.drop(columns<span class="op">=</span>[<span class="st">'living_status'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Looking at the table again, all previous concerns are now resolved:</p>
+<div id="cell-15" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_inductees_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">voting_year</th>
+<th data-quarto-table-cell-role="th">player</th>
+<th data-quarto-table-cell-role="th">voting_body</th>
+<th data-quarto-table-cell-role="th">inducted_as</th>
+<th data-quarto-table-cell-role="th">votes</th>
+<th data-quarto-table-cell-role="th">vote_percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2024</td>
+<td>Adrian Beltré</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>366.0</td>
+<td>95.1%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2024</td>
+<td>Todd Helton</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>307.0</td>
+<td>79.7%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2024</td>
+<td>Joe Mauer</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>293.0</td>
+<td>76.1%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>2023</td>
+<td>Scott Rolen</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>297.0</td>
+<td>76.3%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>2022</td>
+<td>David Ortiz</td>
+<td>BBWAA</td>
+<td>Player</td>
+<td>307.0</td>
+<td>77.9%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Next, we confirm the full table is clean, with no missing values, and all the columns we desire.</p>
+<div id="cell-17" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>all_inductees_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Index: 134 entries, 0 to 345
+Data columns (total 6 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   voting_year      134 non-null    int64  
+ 1   player           134 non-null    object 
+ 2   voting_body      134 non-null    object 
+ 3   inducted_as      134 non-null    object 
+ 4   votes            134 non-null    float64
+ 5   vote_percentage  134 non-null    object 
+dtypes: float64(1), int64(1), object(4)
+memory usage: 7.3+ KB</code></pre>
+</div>
+</div>
+<p>We also observe that the player names are now properly encoded - resulting in a cleaned dataframe. Thus, we save the data back to the processed data folder.</p>
+<div id="cell-19" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>all_inductees_df.player.iloc[<span class="dv">1</span>:<span class="dv">25</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>1           Todd Helton
+3             Joe Mauer
+5           Scott Rolen
+12          David Ortiz
+13          Derek Jeter
+16         Larry Walker
+18         Roy Halladay
+19       Edgar Martínez
+20         Mike Mussina
+21       Mariano Rivera
+23    Vladimir Guerrero
+24       Trevor Hoffman
+25        Chipper Jones
+27            Jim Thome
+29         Jeff Bagwell
+30           Tim Raines
+31       Iván Rodríguez
+34      Ken Griffey Jr.
+35          Mike Piazza
+36         Craig Biggio
+37        Randy Johnson
+38       Pedro Martinez
+39          John Smoltz
+41          Tom Glavine
+Name: player, dtype: object</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>all_inductees_df.to_csv(<span class="st">'../../data/processed-data/all_hof_inductees.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="yearly-bbwaa-hof-ballot-voting-dataframe" class="level4">
+<h4 class="anchored" data-anchor-id="yearly-bbwaa-hof-ballot-voting-dataframe">Yearly BBWAA HOF Ballot Voting DataFrame</h4>
+<p>The next DataFrame is that containing the yearly voting results of the BBWAA ballot. We again print out the first few rows to observe the table structure.</p>
+<div id="cell-23" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">rank</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">player_page_url</th>
+<th data-quarto-table-cell-role="th">year_on_ballot</th>
+<th data-quarto-table-cell-role="th">votes</th>
+<th data-quarto-table-cell-role="th">votes_pct</th>
+<th data-quarto-table-cell-role="th">hof_monitor</th>
+<th data-quarto-table-cell-role="th">hof_standard</th>
+<th data-quarto-table-cell-role="th">experience</th>
+<th data-quarto-table-cell-role="th">WAR_career</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">G_p</th>
+<th data-quarto-table-cell-role="th">GS</th>
+<th data-quarto-table-cell-role="th">SV</th>
+<th data-quarto-table-cell-role="th">IP</th>
+<th data-quarto-table-cell-role="th">H_p</th>
+<th data-quarto-table-cell-role="th">HR_p</th>
+<th data-quarto-table-cell-role="th">BB_p</th>
+<th data-quarto-table-cell-role="th">SO_p</th>
+<th data-quarto-table-cell-role="th">pos_summary</th>
+<th data-quarto-table-cell-role="th">voting_year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Ty Cobb</td>
+<td>https://www.baseball-reference.com/players/c/c...</td>
+<td>1st</td>
+<td>222</td>
+<td>98.2%</td>
+<td>445.0</td>
+<td>75.0</td>
+<td>24.0</td>
+<td>151.4</td>
+<td>...</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>*8*9H7/3145</td>
+<td>1936</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Babe Ruth</td>
+<td>https://www.baseball-reference.com/players/r/r...</td>
+<td>1st</td>
+<td>215</td>
+<td>95.1%</td>
+<td>411.0</td>
+<td>79.0</td>
+<td>22.0</td>
+<td>162.2</td>
+<td>...</td>
+<td>163.0</td>
+<td>147.0</td>
+<td>4.0</td>
+<td>1221.1</td>
+<td>974.0</td>
+<td>10.0</td>
+<td>441.0</td>
+<td>488.0</td>
+<td>*9*71H83</td>
+<td>1936</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Honus Wagner</td>
+<td>https://www.baseball-reference.com/players/w/w...</td>
+<td>1st</td>
+<td>215</td>
+<td>95.1%</td>
+<td>313.0</td>
+<td>75.0</td>
+<td>21.0</td>
+<td>131.0</td>
+<td>...</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>8.1</td>
+<td>7.0</td>
+<td>0.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>*6*O3594H7/81</td>
+<td>1936</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>Christy Mathewson</td>
+<td>https://www.baseball-reference.com/players/m/m...</td>
+<td>1st</td>
+<td>205</td>
+<td>90.7%</td>
+<td>303.0</td>
+<td>84.0</td>
+<td>17.0</td>
+<td>106.7</td>
+<td>...</td>
+<td>636.0</td>
+<td>552.0</td>
+<td>30.0</td>
+<td>4788.2</td>
+<td>4219.0</td>
+<td>89.0</td>
+<td>848.0</td>
+<td>2507.0</td>
+<td>*1/H397</td>
+<td>1936</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>Walter Johnson</td>
+<td>https://www.baseball-reference.com/players/j/j...</td>
+<td>1st</td>
+<td>189</td>
+<td>83.6%</td>
+<td>364.0</td>
+<td>82.0</td>
+<td>21.0</td>
+<td>166.9</td>
+<td>...</td>
+<td>802.0</td>
+<td>666.0</td>
+<td>34.0</td>
+<td>5914.1</td>
+<td>4913.0</td>
+<td>97.0</td>
+<td>1363.0</td>
+<td>3509.0</td>
+<td>*1H/897</td>
+<td>1936</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 41 columns</p>
+</div>
+</div>
+</div>
+<p>Again, there are some <strong>immediate fixes</strong> we must complete. These include:</p>
+<ul>
+<li>Correctly encoding player names</li>
+<li>Converting the year on ballot and vote percentage columns to numeric values</li>
+</ul>
+<p>As well as some <strong>cosmetic edits</strong>:</p>
+<ul>
+<li>Dropping all the stats columns, plus rank, url, and raw vote tallies
+<ul>
+<li>We already have all the stats we will use in the stats DataFrames</li>
+</ul></li>
+</ul>
+<p>For this DataFrame however, there is also some <strong>Feature Engineering/Creation</strong> we complete:</p>
+<ul>
+<li>Building a column for player ID, taken from the scraped URL</li>
+<li>Building a column for the players vote percentage in the year prior
+<ul>
+<li>Again, this leverages a single-step markov assumption, that current vote % is impacted by (and only by) last years vote total.</li>
+</ul></li>
+<li>Create an ‘outcome’ column, based on whether the player was elected, expired, or staying in limbo</li>
+</ul>
+<div id="cell-25" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decode the player names</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.name <span class="op">=</span> yearly_hof_voting_df.name.<span class="bu">apply</span>(decode_player_name)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the year on ballot and vote percent colulmns to numberic values</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.year_on_ballot <span class="op">=</span> yearly_hof_voting_df.year_on_ballot.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">int</span>(x[<span class="dv">0</span>]))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.votes_pct <span class="op">=</span> yearly_hof_voting_df.votes_pct.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">float</span>(x[:<span class="op">-</span><span class="dv">1</span>]))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the ID column</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df[<span class="st">'player_id'</span>] <span class="op">=</span> yearly_hof_voting_df[<span class="st">'player_page_url'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'/'</span>)[<span class="op">-</span><span class="dv">1</span>].split(<span class="st">'.'</span>)[<span class="dv">0</span>])</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the prior year vote percent column</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># For players who are on the ballot for the first year, we insert None, and will later impute a value</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df[<span class="st">'ly_votes_pct'</span>] <span class="op">=</span> yearly_hof_voting_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: yearly_hof_voting_df[(yearly_hof_voting_df.player_id <span class="op">==</span> x.player_id) <span class="op">&amp;</span> (yearly_hof_voting_df.year_on_ballot <span class="op">==</span> x.year_on_ballot <span class="op">-</span> <span class="dv">1</span>)].votes_pct.iloc[<span class="dv">0</span>] <span class="cf">if</span> x.year_on_ballot <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create outcome column</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> return_ballot_outcome(year_on_ballot, current_vote):</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Returns the outcome for a player in the BBWAA vote, depending on their vote share and numbher</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">      of previous years on the ballot'''</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> current_vote <span class="op">&gt;=</span> <span class="dv">75</span>:</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'elected'</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> current_vote <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'eliminated'</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> current_vote <span class="op">&lt;</span> <span class="dv">75</span> <span class="kw">and</span> year_on_ballot <span class="op">==</span> <span class="dv">9</span>:</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'expired'</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'limbo'</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df[<span class="st">'outcome'</span>] <span class="op">=</span> yearly_hof_voting_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: return_ballot_outcome(x.year_on_ballot, x.votes_pct), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop unnecessary columns</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df <span class="op">=</span> yearly_hof_voting_df[[<span class="st">'name'</span>, <span class="st">'player_id'</span>, <span class="st">'voting_year'</span>, <span class="st">'year_on_ballot'</span>, <span class="st">'votes_pct'</span>, <span class="st">'ly_votes_pct'</span>, <span class="st">'outcome'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because we’ve filled in the prior year’s vote percentage as None for players in their first year on the ballot, we now must impute, or fill in, those missing values. To do this, we will impute with the <strong>average vote percentage of first year players</strong>. We don’t impute with 0, as the values are numeric and relative, so 0 may undervalue these players in a model. We also don’t chose the overall mean value, as we already have the additional information that these are first year players, so we may introduce falsehoods by including ballot ‘veterans’ in the mean.</p>
+<div id="cell-27" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean vote percentage garnered by first year players</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mean_value <span class="op">=</span> yearly_hof_voting_df[[<span class="st">'year_on_ballot'</span>, <span class="st">'votes_pct'</span>]].groupby(by<span class="op">=</span><span class="st">'year_on_ballot'</span>).mean().loc[<span class="dv">1</span>].votes_pct</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute the mean value</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.ly_votes_pct <span class="op">=</span> yearly_hof_voting_df.ly_votes_pct.fillna(mean_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we once again check that the first few rows of the dataset to ensure our changes have taken effect, and print info about the dataset as a whole to ensure we have completed the cleaning process, before we write the dataset out to the processed data folder.</p>
+<div id="cell-29" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">voting_year</th>
+<th data-quarto-table-cell-role="th">year_on_ballot</th>
+<th data-quarto-table-cell-role="th">votes_pct</th>
+<th data-quarto-table-cell-role="th">ly_votes_pct</th>
+<th data-quarto-table-cell-role="th">outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Ty Cobb</td>
+<td>cobbty01</td>
+<td>1936</td>
+<td>1</td>
+<td>98.2</td>
+<td>12.975208</td>
+<td>elected</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Babe Ruth</td>
+<td>ruthba01</td>
+<td>1936</td>
+<td>1</td>
+<td>95.1</td>
+<td>12.975208</td>
+<td>elected</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Honus Wagner</td>
+<td>wagneho01</td>
+<td>1936</td>
+<td>1</td>
+<td>95.1</td>
+<td>12.975208</td>
+<td>elected</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Christy Mathewson</td>
+<td>mathech01</td>
+<td>1936</td>
+<td>1</td>
+<td>90.7</td>
+<td>12.975208</td>
+<td>elected</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Walter Johnson</td>
+<td>johnswa01</td>
+<td>1936</td>
+<td>1</td>
+<td>83.6</td>
+<td>12.975208</td>
+<td>elected</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-30" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 4900 entries, 0 to 4899
+Data columns (total 7 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   name            4900 non-null   object 
+ 1   player_id       4900 non-null   object 
+ 2   voting_year     4900 non-null   int64  
+ 3   year_on_ballot  4900 non-null   int64  
+ 4   votes_pct       4900 non-null   float64
+ 5   ly_votes_pct    4900 non-null   float64
+ 6   outcome         4900 non-null   object 
+dtypes: float64(2), int64(2), object(3)
+memory usage: 268.1+ KB</code></pre>
+</div>
+</div>
+<div id="cell-31" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write DataFrame to csv in processed data folder</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>yearly_hof_voting_df.to_csv(<span class="st">'../../data/processed-data/all_bbwaa_voting.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="player-names-and-ids-dataframe" class="level4">
+<h4 class="anchored" data-anchor-id="player-names-and-ids-dataframe">Player Names and IDs DataFrame</h4>
+<p>For the next DataFrame, we inspect the DataFrame containing all the <strong>General Player Information</strong></p>
+<div id="cell-34" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>all_player_info.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">url_suffix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>David Aardsma</td>
+<td>aardsda01</td>
+<td>/players/a/aardsda01.shtml</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Henry Aaron</td>
+<td>aaronha01</td>
+<td>/players/a/aaronha01.shtml</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Tommie Aaron</td>
+<td>aaronto01</td>
+<td>/players/a/aaronto01.shtml</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Don Aase</td>
+<td>aasedo01</td>
+<td>/players/a/aasedo01.shtml</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Andy Abad</td>
+<td>abadan01</td>
+<td>/players/a/abadan01.shtml</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-35" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>all_player_info.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 23370 entries, 0 to 23369
+Data columns (total 3 columns):
+ #   Column      Non-Null Count  Dtype 
+---  ------      --------------  ----- 
+ 0   name        23370 non-null  object
+ 1   id          23370 non-null  object
+ 2   url_suffix  23370 non-null  object
+dtypes: object(3)
+memory usage: 547.9+ KB</code></pre>
+</div>
+</div>
+<p>We see that the DataFrame is already clean and tidy, but we can drop the url suffix, as we will not need it for further research. We then save the DataFrame to the processed data folder</p>
+<div id="cell-37" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the URL column</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>all_player_info <span class="op">=</span> all_player_info.drop(columns<span class="op">=</span>[<span class="st">'url_suffix'</span>])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the DataFrame</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>all_player_info.to_csv(<span class="st">'../../data/processed-data/all_player_info.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="career-stats-for-all-players" class="level4">
+<h4 class="anchored" data-anchor-id="career-stats-for-all-players">Career Stats for All Players</h4>
+<p>Moving onto the career stats for every player throughout history, we begin by dividing data between batters and pitchers. We accomplish this by filtering DataFrames based on whether the player meets thresholds for innings pitched and if not then plate appearences. During this process we also drop duplicated column names so that we can combine DataFrames in a future step.</p>
+<ul>
+<li>If players do not meet either threshold, we simply ignore them as there is zero possibility they will be eligible for the HOF under BBWAA rules</li>
+</ul>
+<div id="cell-40" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>batter_career_stats_l <span class="op">=</span> []</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats_l <span class="op">=</span> []</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> series <span class="kw">in</span> all_player_career_stats:</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(series, pd.DataFrame):</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if the player pitched more than 100 innings</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">'p_ip'</span> <span class="kw">in</span> series.columns <span class="kw">and</span> <span class="bu">float</span>(series.p_ip.T.iloc[<span class="dv">0</span>,<span class="dv">0</span>]) <span class="op">&gt;</span> <span class="dv">150</span> <span class="kw">and</span> series[<span class="st">'player_id'</span>].iloc[<span class="dv">0</span>] <span class="op">!=</span> <span class="st">'ruthba01'</span>: <span class="co"># We also make Babe Ruth a Batter</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            duplicated_columns <span class="op">=</span> series.columns.duplicated()</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            pitcher_career_stats_l.append(series.loc[:, <span class="op">~</span>duplicated_columns])</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if the batter had at least 500 plate appearences</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="st">'b_pa'</span> <span class="kw">in</span> series.columns <span class="kw">and</span> <span class="bu">float</span>(series.b_pa.T.iloc[<span class="dv">0</span>,<span class="dv">0</span>]) <span class="op">&gt;</span> <span class="dv">850</span>:</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            duplicated_columns <span class="op">=</span> series.columns.duplicated()</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            batter_career_stats_l.append(series.loc[:, <span class="op">~</span>duplicated_columns])</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally, we concatonate all the individual DataFrames into one</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats <span class="op">=</span> pd.concat([df <span class="cf">for</span> df <span class="kw">in</span> pitcher_career_stats_l], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>batter_career_stats <span class="op">=</span> pd.concat([df <span class="cf">for</span> df <span class="kw">in</span> batter_career_stats_l], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we inspect the first few rows of both the batting and pitching DataFrames</p>
+<div id="cell-42" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>batter_career_stats.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">b_war</th>
+<th data-quarto-table-cell-role="th">b_games</th>
+<th data-quarto-table-cell-role="th">b_pa</th>
+<th data-quarto-table-cell-role="th">b_ab</th>
+<th data-quarto-table-cell-role="th">b_r</th>
+<th data-quarto-table-cell-role="th">b_h</th>
+<th data-quarto-table-cell-role="th">b_doubles</th>
+<th data-quarto-table-cell-role="th">b_triples</th>
+<th data-quarto-table-cell-role="th">b_hr</th>
+<th data-quarto-table-cell-role="th">b_rbi</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">p_avg_exit_velo</th>
+<th data-quarto-table-cell-role="th">p_hard_hit_perc</th>
+<th data-quarto-table-cell-role="th">p_ld_perc</th>
+<th data-quarto-table-cell-role="th">p_gb_perc</th>
+<th data-quarto-table-cell-role="th">p_fb_perc</th>
+<th data-quarto-table-cell-role="th">p_gb_fb_ratio</th>
+<th data-quarto-table-cell-role="th">p_wpa_def</th>
+<th data-quarto-table-cell-role="th">p_cwpa_def</th>
+<th data-quarto-table-cell-role="th">p_baseout_runs</th>
+<th data-quarto-table-cell-role="th">p_win_loss_perc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>143.1</td>
+<td>3298</td>
+<td>13941</td>
+<td>12364</td>
+<td>2174</td>
+<td>3771</td>
+<td>624</td>
+<td>98</td>
+<td>755</td>
+<td>2297</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>-2.8</td>
+<td>437</td>
+<td>1046</td>
+<td>944</td>
+<td>102</td>
+<td>216</td>
+<td>42</td>
+<td>6</td>
+<td>13</td>
+<td>94</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>8.7</td>
+<td>855</td>
+<td>3479</td>
+<td>3044</td>
+<td>355</td>
+<td>772</td>
+<td>99</td>
+<td>43</td>
+<td>11</td>
+<td>324</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1.8</td>
+<td>452</td>
+<td>1965</td>
+<td>1756</td>
+<td>307</td>
+<td>493</td>
+<td>67</td>
+<td>46</td>
+<td>19</td>
+<td>280</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.5</td>
+<td>702</td>
+<td>2227</td>
+<td>2044</td>
+<td>273</td>
+<td>523</td>
+<td>109</td>
+<td>23</td>
+<td>62</td>
+<td>242</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 99 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-43" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">b_war</th>
+<th data-quarto-table-cell-role="th">b_games</th>
+<th data-quarto-table-cell-role="th">b_pa</th>
+<th data-quarto-table-cell-role="th">b_ab</th>
+<th data-quarto-table-cell-role="th">b_r</th>
+<th data-quarto-table-cell-role="th">b_h</th>
+<th data-quarto-table-cell-role="th">b_doubles</th>
+<th data-quarto-table-cell-role="th">b_triples</th>
+<th data-quarto-table-cell-role="th">b_hr</th>
+<th data-quarto-table-cell-role="th">b_rbi</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">p_cwpa_def</th>
+<th data-quarto-table-cell-role="th">p_baseout_runs</th>
+<th data-quarto-table-cell-role="th">accomplishments</th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">b_gb_fb_ratio</th>
+<th data-quarto-table-cell-role="th">b_run_scoring_perc</th>
+<th data-quarto-table-cell-role="th">b_extra_bases_taken_perc</th>
+<th data-quarto-table-cell-role="th">b_stolen_base_perc</th>
+<th data-quarto-table-cell-role="th">b_avg_exit_velo</th>
+<th data-quarto-table-cell-role="th">b_hard_hit_perc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>-0.1</td>
+<td>139</td>
+<td>5</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>-0.1%</td>
+<td>11.21</td>
+<td></td>
+<td>aardsda01</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>-0.1</td>
+<td>81</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>8.1%</td>
+<td>36.38</td>
+<td>1x All-Star</td>
+<td>aasedo01</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.1</td>
+<td>159</td>
+<td>9</td>
+<td>9</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>-1.3%</td>
+<td>10.25</td>
+<td></td>
+<td>abadfe01</td>
+<td>3.00</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>-1.0</td>
+<td>79</td>
+<td>252</td>
+<td>225</td>
+<td>21</td>
+<td>38</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>17</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td></td>
+<td>abbeybe01</td>
+<td>NaN</td>
+<td>35.6</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>0.7%</td>
+<td>18.95</td>
+<td></td>
+<td>abbotan01</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 99 columns</p>
+</div>
+</div>
+</div>
+<p>Both DataFrames have a large number of features, so it is necessary to print out the full columnn list, where we will determine which are necessary</p>
+<div id="cell-45" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>Index(['b_war', 'b_games', 'b_pa', 'b_ab', 'b_r', 'b_h', 'b_doubles',
+       'b_triples', 'b_hr', 'b_rbi', 'b_sb', 'b_cs', 'b_bb', 'b_so',
+       'b_batting_avg', 'b_onbase_perc', 'b_slugging_perc',
+       'b_onbase_plus_slugging', 'b_onbase_plus_slugging_plus', 'b_roba',
+       'b_rbat_plus', 'b_tb', 'b_gidp', 'b_hbp', 'b_sh', 'b_sf', 'b_ibb',
+       'pos', 'awards', 'b_batting_avg_bip', 'b_iso_slugging',
+       'b_home_run_perc', 'b_strikeout_perc', 'b_base_on_balls_perc',
+       'b_ld_perc', 'b_gb_perc', 'b_fb_perc', 'b_pull_perc', 'b_center_perc',
+       'b_oppo_perc', 'b_wpa_bat', 'b_cwpa_bat', 'b_baseout_runs', 'p_war',
+       'p_w', 'p_l', 'p_win_loss_perc', 'p_earned_run_avg', 'p_g', 'p_gs',
+       'p_gf', 'p_cg', 'p_sho', 'p_sv', 'p_ip', 'p_h', 'p_r', 'p_er', 'p_hr',
+       'p_bb', 'p_ibb', 'p_so', 'p_hbp', 'p_bk', 'p_wp', 'p_bfp',
+       'p_earned_run_avg_plus', 'p_fip', 'p_whip', 'p_hits_per_nine',
+       'p_hr_per_nine', 'p_bb_per_nine', 'p_so_per_nine',
+       'p_strikeouts_per_base_on_balls', 'p_batting_avg', 'p_onbase_perc',
+       'p_slugging_perc', 'p_onbase_plus_slugging', 'p_batting_avg_bip',
+       'p_home_run_perc', 'p_strikeout_perc', 'p_base_on_balls_perc',
+       'p_avg_exit_velo', 'p_hard_hit_perc', 'p_ld_perc', 'p_gb_perc',
+       'p_fb_perc', 'p_gb_fb_ratio', 'p_wpa_def', 'p_cwpa_def',
+       'p_baseout_runs', 'accomplishments', 'player_id', 'b_gb_fb_ratio',
+       'b_run_scoring_perc', 'b_extra_bases_taken_perc', 'b_stolen_base_perc',
+       'b_avg_exit_velo', 'b_hard_hit_perc'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-46" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>Index(['b_war', 'b_games', 'b_pa', 'b_ab', 'b_r', 'b_h', 'b_doubles',
+       'b_triples', 'b_hr', 'b_rbi', 'b_sb', 'b_cs', 'b_bb', 'b_so',
+       'b_batting_avg', 'b_onbase_perc', 'b_slugging_perc',
+       'b_onbase_plus_slugging', 'b_onbase_plus_slugging_plus', 'b_roba',
+       'b_rbat_plus', 'b_tb', 'b_gidp', 'b_hbp', 'b_sh', 'b_sf', 'b_ibb',
+       'pos', 'awards', 'b_batting_avg_bip', 'b_iso_slugging',
+       'b_home_run_perc', 'b_strikeout_perc', 'b_base_on_balls_perc',
+       'b_ld_perc', 'b_gb_perc', 'b_fb_perc', 'b_pull_perc', 'b_center_perc',
+       'b_oppo_perc', 'b_wpa_bat', 'b_cwpa_bat', 'b_baseout_runs', 'p_war',
+       'p_w', 'p_l', 'p_win_loss_perc', 'p_earned_run_avg', 'p_g', 'p_gs',
+       'p_gf', 'p_cg', 'p_sho', 'p_sv', 'p_ip', 'p_h', 'p_r', 'p_er', 'p_hr',
+       'p_bb', 'p_ibb', 'p_so', 'p_hbp', 'p_bk', 'p_wp', 'p_bfp',
+       'p_earned_run_avg_plus', 'p_fip', 'p_whip', 'p_hits_per_nine',
+       'p_hr_per_nine', 'p_bb_per_nine', 'p_so_per_nine',
+       'p_strikeouts_per_base_on_balls', 'p_batting_avg', 'p_onbase_perc',
+       'p_slugging_perc', 'p_onbase_plus_slugging', 'p_batting_avg_bip',
+       'p_home_run_perc', 'p_strikeout_perc', 'p_base_on_balls_perc',
+       'p_avg_exit_velo', 'p_hard_hit_perc', 'p_ld_perc', 'p_gb_perc',
+       'p_fb_perc', 'p_gb_fb_ratio', 'p_wpa_def', 'p_cwpa_def',
+       'p_baseout_runs', 'accomplishments', 'player_id', 'b_gb_fb_ratio',
+       'b_run_scoring_perc', 'b_extra_bases_taken_perc', 'b_stolen_base_perc',
+       'b_avg_exit_velo', 'b_hard_hit_perc'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p>We will not need this many features in our final datasets. Thus, for pitchers, we will use a concise set of pitching metrics, alongside a few simple batting metrics. For batters, we will filter down to a more consice set of batting metrics, while leaving out any pitching metrics. This is because there is effectively no sample of batters who consistiently pitch (outside of a few notable exceptions)</p>
+</section>
+<section id="batting-metrics" class="level4">
+<h4 class="anchored" data-anchor-id="batting-metrics">Batting Metrics</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>b_war</td>
+<td>Wins above Replacement (<a href="https://www.baseball-reference.com/about/war_explained_position.shtml">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>b_pa</td>
+<td>Plate Appearances</td>
+</tr>
+<tr class="odd">
+<td>b_h</td>
+<td>Hits</td>
+</tr>
+<tr class="even">
+<td>b_hr</td>
+<td>Home Runs</td>
+</tr>
+<tr class="odd">
+<td>b_sb</td>
+<td>Stolen Bases</td>
+</tr>
+<tr class="even">
+<td>b_bb</td>
+<td>Walks</td>
+</tr>
+<tr class="odd">
+<td>b_so</td>
+<td>Strikeouts</td>
+</tr>
+<tr class="even">
+<td>b_batting_avg</td>
+<td>Batting Average</td>
+</tr>
+<tr class="odd">
+<td>b_onbase_plus_slugging</td>
+<td>On Base % plus Slugging % (<a href="https://www.mlb.com/glossary/standard-stats/on-base-plus-slugging">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>b_onbase_plus_slugging_plus</td>
+<td>On Base % plus Slugging % indexed to league average value of 100 (<a href="https://www.mlb.com/glossary/advanced-stats/on-base-plus-slugging-plus">full definition here</a>)</td>
+</tr>
+<tr class="odd">
+<td>b_home_run_perc</td>
+<td>Home Run Percent</td>
+</tr>
+<tr class="even">
+<td>b_strikeout_perc</td>
+<td>Strikeout Percent</td>
+</tr>
+<tr class="odd">
+<td>b_base_on_balls_perc</td>
+<td>Walk Percent</td>
+</tr>
+<tr class="even">
+<td>b_cwpa_bat</td>
+<td>Championship win probability added (<a href="https://www.sports-reference.com/blog/2020/09/__trashed-2/">full definition here</a>)</td>
+</tr>
+<tr class="odd">
+<td>b_baseout_runs</td>
+<td>Run Expectancy Change (<a href="https://library.fangraphs.com/misc/re24/">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>accomplishments</td>
+<td>Awards won throughout career</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pitching-metrics" class="level4">
+<h4 class="anchored" data-anchor-id="pitching-metrics">Pitching Metrics</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p_war</td>
+<td>Wins above Replacement (<a href="https://www.baseball-reference.com/about/war_explained_pitch.shtml">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>p_w</td>
+<td>Wins</td>
+</tr>
+<tr class="odd">
+<td>p_win_loss_perc</td>
+<td>Win percentage</td>
+</tr>
+<tr class="even">
+<td>p_earned_run_avg</td>
+<td>Earned Run Average (Earned Runs / Innings Pitched)</td>
+</tr>
+<tr class="odd">
+<td>p_earned_run_avg_plus</td>
+<td>Earned Run Average indexed to league average value of 100 (<a href="https://www.mlb.com/glossary/advanced-stats/earned-run-average-plus">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>p_g</td>
+<td>Games appeared in</td>
+</tr>
+<tr class="odd">
+<td>p_gs</td>
+<td>Games started</td>
+</tr>
+<tr class="even">
+<td>p_sho</td>
+<td>Shutouts</td>
+</tr>
+<tr class="odd">
+<td>p_sv</td>
+<td>Saves</td>
+</tr>
+<tr class="even">
+<td>p_ip</td>
+<td>Innings Pitched</td>
+</tr>
+<tr class="odd">
+<td>p_so</td>
+<td>Strikeouts</td>
+</tr>
+<tr class="even">
+<td>p_whip</td>
+<td>Walks and Hits per Innings Pitched</td>
+</tr>
+<tr class="odd">
+<td>p_fip</td>
+<td>Fielding Independent Pitching (<a href="https://www.mlb.com/glossary/advanced-stats/fielding-independent-pitching">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>p_strikeouts_per_base_on_balls</td>
+<td>Ratio of strikeouts to walks</td>
+</tr>
+<tr class="odd">
+<td>p_batting_avg</td>
+<td>Batting Average of batters faced</td>
+</tr>
+<tr class="even">
+<td>p_onbase_plus_slugging</td>
+<td>On Base % + Slugging % of batters faced</td>
+</tr>
+<tr class="odd">
+<td>p_home_run_perc</td>
+<td>Home Run %</td>
+</tr>
+<tr class="even">
+<td>p_strikeout_perc</td>
+<td>Strikeout %</td>
+</tr>
+<tr class="odd">
+<td>p_cwpa_def</td>
+<td>Championship win probability added (<a href="https://www.sports-reference.com/blog/2020/09/__trashed-2/">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>p_baseout_runs</td>
+<td>Run Expectancy Change (<a href="https://library.fangraphs.com/misc/re24/">full definition here</a>)</td>
+</tr>
+<tr class="odd">
+<td>b_war</td>
+<td>Wins above Replacement (<a href="https://www.baseball-reference.com/about/war_explained_position.shtml">full definition here</a>)</td>
+</tr>
+<tr class="even">
+<td>b_batting_avg</td>
+<td>Batting Average (as a batter)</td>
+</tr>
+<tr class="odd">
+<td>b_onbase_plus_slugging_plus</td>
+<td>On Base % plus Slugging % (as a batter)</td>
+</tr>
+<tr class="even">
+<td>accomplishments</td>
+<td>Awards won throughout career</td>
+</tr>
+</tbody>
+</table>
+<div id="cell-49" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the important columns and filter the datasets down</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>batter_columns <span class="op">=</span> [</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b_war"</span>, <span class="st">"b_pa"</span>, <span class="st">"b_h"</span>, <span class="st">"b_hr"</span>, <span class="st">"b_sb"</span>, <span class="st">"b_bb"</span>, <span class="st">"b_so"</span>, <span class="st">"b_batting_avg"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b_onbase_plus_slugging"</span>, <span class="st">"b_onbase_plus_slugging_plus"</span>, <span class="st">"b_home_run_perc"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b_strikeout_perc"</span>, <span class="st">"b_base_on_balls_perc"</span>, <span class="st">"b_cwpa_bat"</span>, <span class="st">"b_baseout_runs"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accomplishments"</span>, <span class="st">'player_id'</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>pitcher_columns <span class="op">=</span> [</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p_war"</span>, <span class="st">"p_w"</span>, <span class="st">"p_win_loss_perc"</span>, <span class="st">"p_earned_run_avg"</span>, <span class="st">"p_earned_run_avg_plus"</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p_g"</span>, <span class="st">"p_gs"</span>, <span class="st">"p_sho"</span>, <span class="st">"p_sv"</span>, <span class="st">"p_ip"</span>, <span class="st">"p_so"</span>, <span class="st">"p_whip"</span>, <span class="st">"p_fip"</span>,</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p_strikeouts_per_base_on_balls"</span>, <span class="st">"p_batting_avg"</span>, <span class="st">"p_onbase_plus_slugging"</span>,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p_home_run_perc"</span>, <span class="st">"p_strikeout_perc"</span>, <span class="st">"p_cwpa_def"</span>, <span class="st">"p_baseout_runs"</span>,</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accomplishments"</span>, <span class="st">'b_war'</span>,<span class="st">'b_batting_avg'</span>, <span class="st">'b_onbase_plus_slugging_plus'</span>, <span class="st">'player_id'</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>batter_career_stats <span class="op">=</span> batter_career_stats[batter_columns]</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats <span class="op">=</span> pitcher_career_stats[pitcher_columns]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Looking through the career stats DataFrames, we still see that there are some <strong>missing values</strong> present. Specifically, these are for a handfull of metrics, for players who played so long ago that these metrics were not tracked in games. To solve this problem, we impute with the median of each stat. We choose the median becuase the dataset consists of all major league players, so the underlying data is likely skewed with outliers from the few excellent players of each statistic.</p>
+<div id="cell-51" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 3835 entries, 0 to 3834
+Data columns (total 25 columns):
+ #   Column                          Non-Null Count  Dtype 
+---  ------                          --------------  ----- 
+ 0   p_war                           3835 non-null   object
+ 1   p_w                             3835 non-null   object
+ 2   p_win_loss_perc                 3835 non-null   object
+ 3   p_earned_run_avg                3835 non-null   object
+ 4   p_earned_run_avg_plus           3835 non-null   object
+ 5   p_g                             3835 non-null   object
+ 6   p_gs                            3835 non-null   object
+ 7   p_sho                           3835 non-null   object
+ 8   p_sv                            3835 non-null   object
+ 9   p_ip                            3835 non-null   object
+ 10  p_so                            3835 non-null   object
+ 11  p_whip                          3835 non-null   object
+ 12  p_fip                           3835 non-null   object
+ 13  p_strikeouts_per_base_on_balls  3835 non-null   object
+ 14  p_batting_avg                   3271 non-null   object
+ 15  p_onbase_plus_slugging          3271 non-null   object
+ 16  p_home_run_perc                 3835 non-null   object
+ 17  p_strikeout_perc                3835 non-null   object
+ 18  p_cwpa_def                      3259 non-null   object
+ 19  p_baseout_runs                  3259 non-null   object
+ 20  accomplishments                 3835 non-null   object
+ 21  b_war                           3750 non-null   object
+ 22  b_batting_avg                   3605 non-null   object
+ 23  b_onbase_plus_slugging_plus     3605 non-null   object
+ 24  player_id                       3835 non-null   object
+dtypes: object(25)
+memory usage: 749.1+ KB</code></pre>
+</div>
+</div>
+<div id="cell-52" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>batter_career_stats.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 4425 entries, 0 to 4424
+Data columns (total 17 columns):
+ #   Column                       Non-Null Count  Dtype 
+---  ------                       --------------  ----- 
+ 0   b_war                        4425 non-null   object
+ 1   b_pa                         4425 non-null   object
+ 2   b_h                          4425 non-null   object
+ 3   b_hr                         4425 non-null   object
+ 4   b_sb                         4412 non-null   object
+ 5   b_bb                         4425 non-null   object
+ 6   b_so                         4267 non-null   object
+ 7   b_batting_avg                4425 non-null   object
+ 8   b_onbase_plus_slugging       4425 non-null   object
+ 9   b_onbase_plus_slugging_plus  4425 non-null   object
+ 10  b_home_run_perc              4425 non-null   object
+ 11  b_strikeout_perc             4267 non-null   object
+ 12  b_base_on_balls_perc         4425 non-null   object
+ 13  b_cwpa_bat                   3777 non-null   object
+ 14  b_baseout_runs               3777 non-null   object
+ 15  accomplishments              4425 non-null   object
+ 16  player_id                    4425 non-null   object
+dtypes: object(17)
+memory usage: 587.8+ KB</code></pre>
+</div>
+</div>
+<p>To complete the imputing, we must also convert all possible stats to numeric values</p>
+<div id="cell-54" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert values to numeric</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>batter_career_stats.b_cwpa_bat <span class="op">=</span> batter_career_stats.b_cwpa_bat.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">'%'</span>, <span class="st">''</span>) <span class="cf">if</span> <span class="bu">type</span>(x) <span class="op">==</span> <span class="bu">str</span> <span class="cf">else</span> x)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.p_cwpa_def <span class="op">=</span> pitcher_career_stats.p_cwpa_def.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">'%'</span>, <span class="st">''</span>) <span class="cf">if</span> <span class="bu">type</span>(x) <span class="op">==</span> <span class="bu">str</span> <span class="cf">else</span> x)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>batter_career_stats <span class="op">=</span> batter_career_stats.<span class="bu">apply</span>(<span class="kw">lambda</span> x: pd.to_numeric(x, errors<span class="op">=</span><span class="st">'ignore'</span>))</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats <span class="op">=</span> pitcher_career_stats.<span class="bu">apply</span>(<span class="kw">lambda</span> x: pd.to_numeric(x, errors<span class="op">=</span><span class="st">'ignore'</span>))</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute column medians, ignoring the string columns</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>imputer <span class="op">=</span> SimpleImputer(strategy<span class="op">=</span><span class="st">'median'</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>batter_career_stats.loc[:, <span class="op">~</span>batter_career_stats.columns.isin([<span class="st">'accomplishments'</span>, <span class="st">'player_id'</span>])] <span class="op">=</span> imputer.fit_transform(batter_career_stats.loc[:, <span class="op">~</span>batter_career_stats.columns.isin([<span class="st">'accomplishments'</span>, <span class="st">'player_id'</span>])])</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.loc[:, <span class="op">~</span>pitcher_career_stats.columns.isin([<span class="st">'accomplishments'</span>, <span class="st">'player_id'</span>])] <span class="op">=</span> imputer.fit_transform(pitcher_career_stats.loc[:, <span class="op">~</span>pitcher_career_stats.columns.isin([<span class="st">'accomplishments'</span>, <span class="st">'player_id'</span>])])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/x1/v8sbf2px7bd3mh5s_v4zrxp40000gn/T/ipykernel_53307/1207380148.py:5: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  batter_career_stats = batter_career_stats.apply(lambda x: pd.to_numeric(x, errors='ignore'))
+/var/folders/x1/v8sbf2px7bd3mh5s_v4zrxp40000gn/T/ipykernel_53307/1207380148.py:6: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  pitcher_career_stats = pitcher_career_stats.apply(lambda x: pd.to_numeric(x, errors='ignore'))</code></pre>
+</div>
+</div>
+<div id="cell-55" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 3835 entries, 0 to 3834
+Data columns (total 25 columns):
+ #   Column                          Non-Null Count  Dtype  
+---  ------                          --------------  -----  
+ 0   p_war                           3835 non-null   float64
+ 1   p_w                             3835 non-null   int64  
+ 2   p_win_loss_perc                 3835 non-null   float64
+ 3   p_earned_run_avg                3835 non-null   float64
+ 4   p_earned_run_avg_plus           3835 non-null   int64  
+ 5   p_g                             3835 non-null   int64  
+ 6   p_gs                            3835 non-null   int64  
+ 7   p_sho                           3835 non-null   int64  
+ 8   p_sv                            3835 non-null   int64  
+ 9   p_ip                            3835 non-null   float64
+ 10  p_so                            3835 non-null   int64  
+ 11  p_whip                          3835 non-null   float64
+ 12  p_fip                           3835 non-null   float64
+ 13  p_strikeouts_per_base_on_balls  3835 non-null   float64
+ 14  p_batting_avg                   3835 non-null   float64
+ 15  p_onbase_plus_slugging          3835 non-null   float64
+ 16  p_home_run_perc                 3835 non-null   float64
+ 17  p_strikeout_perc                3835 non-null   float64
+ 18  p_cwpa_def                      3835 non-null   float64
+ 19  p_baseout_runs                  3835 non-null   float64
+ 20  accomplishments                 3835 non-null   object 
+ 21  b_war                           3835 non-null   float64
+ 22  b_batting_avg                   3835 non-null   float64
+ 23  b_onbase_plus_slugging_plus     3835 non-null   float64
+ 24  player_id                       3835 non-null   object 
+dtypes: float64(16), int64(7), object(2)
+memory usage: 749.1+ KB</code></pre>
+</div>
+</div>
+<p>Now that the table is free from all missing values, the last step is to account for the awards data, which is currently unstructured text. To do this, we write a function that searches the texts for any of the 5 major awards we want to include, as well as their counts, before adding new columns for the award wins. By looking at awards, we also aim to capture greatness from players who had short stretches of greatness, but potentially didnt play for many years. The major awards are:</p>
+<ul>
+<li>MVP - Most Valuable Player (Generally a hitter)</li>
+<li>Cy Young - Best Pitcher</li>
+<li>Batting Title - Highest Batting Average</li>
+<li>Gold Glove - Best defensive player at a given position</li>
+<li>All Star - Being named to the ‘All Star’ team in a given year</li>
+</ul>
+<div id="cell-57" class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scan_awards(text, award):</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Given the text from our award scraping function, and a specific award, return the number of times</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">       the award was won'''</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the award was won at all</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    win <span class="op">=</span> award.lower() <span class="kw">in</span> text.lower()</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If the award was not won, return 0. Else, return the number of times it was won</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> win:</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">','</span> <span class="kw">in</span> text: <span class="co"># The player won multiple awards, and the formatting is different</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                num_wins <span class="op">=</span> <span class="bu">int</span>(text.lower().split(award.lower())[<span class="dv">0</span>].split(<span class="st">','</span>)[<span class="op">-</span><span class="dv">1</span>].strip().replace(<span class="st">'x'</span>, <span class="st">''</span>))</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span> (<span class="pp">IndexError</span>, <span class="pp">ValueError</span>): <span class="co"># Sometimes when winning the awarad once, the format changes</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>                num_wins <span class="op">=</span> <span class="bu">int</span>(text.lower().split(<span class="st">'all-star'</span>.lower())[<span class="dv">0</span>].strip().replace(<span class="st">'x'</span>, <span class="st">''</span>))</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span> (<span class="pp">IndexError</span>, <span class="pp">ValueError</span>):</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> num_wins</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Insert Pitching Awards  </span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats[<span class="st">"cy_youngs"</span>] <span class="op">=</span> pitcher_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"Cy Young"</span>))</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats[<span class="st">"gold_gloves"</span>] <span class="op">=</span> pitcher_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"Gold Glove"</span>))</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats[<span class="st">"mvps"</span>] <span class="op">=</span> pitcher_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"MVP"</span>))</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats[<span class="st">"all_stars"</span>] <span class="op">=</span> pitcher_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"All-Star"</span>))</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Insert Batting Awards</span></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>batter_career_stats[<span class="st">"mvps"</span>] <span class="op">=</span> batter_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"MVP"</span>))</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>batter_career_stats[<span class="st">"gold_gloves"</span>] <span class="op">=</span> batter_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"Gold Glove"</span>))</span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>batter_career_stats[<span class="st">"batting_titles"</span>] <span class="op">=</span> batter_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"Batting Title"</span>))</span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>batter_career_stats[<span class="st">"all_stars"</span>] <span class="op">=</span> batter_career_stats.accomplishments.<span class="bu">apply</span>(<span class="kw">lambda</span> x: scan_awards(x, <span class="st">"All-Star"</span>))</span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the general accomplishments columns from each DataFrame</span></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a>batter_career_stats <span class="op">=</span> batter_career_stats.drop(columns<span class="op">=</span>[<span class="st">'accomplishments'</span>])</span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats <span class="op">=</span> pitcher_career_stats.drop(columns<span class="op">=</span>[<span class="st">'accomplishments'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-58" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows of the awards data for batters</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>batter_career_stats.head()[[<span class="st">'player_id'</span>, <span class="st">'mvps'</span>, <span class="st">'gold_gloves'</span>, <span class="st">'batting_titles'</span>, <span class="st">'all_stars'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">mvps</th>
+<th data-quarto-table-cell-role="th">gold_gloves</th>
+<th data-quarto-table-cell-role="th">batting_titles</th>
+<th data-quarto-table-cell-role="th">all_stars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>aaronha01</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>aaronto01</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>abbated01</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>abbeych01</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>abbotku01</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>With the DataFrame completely clean, and the awards dealt with, we save it back to the processed data folder</p>
+<div id="cell-60" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>batter_career_stats.to_csv(<span class="st">'../../data/processed-data/batter_career_stats.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pitcher_career_stats.to_csv(<span class="st">'../../data/processed-data/pitcher_career_stats.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="appearences-by-position-dataframe" class="level4">
+<h4 class="anchored" data-anchor-id="appearences-by-position-dataframe">Appearences by Position DataFrame</h4>
+<p>Finally, we move onto the appearences by position dataset, which we will use to gain a more granular look at the positions each player played throughout their career. Because this is a list of DataFrames, we start by concatonating everything into a singular one</p>
+<div id="cell-62" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>appearances_df <span class="op">=</span> pd.concat([x <span class="cf">for</span> x <span class="kw">in</span> all_player_career_appearences], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>appearances_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">lg_ID</th>
+<th data-quarto-table-cell-role="th">G_all</th>
+<th data-quarto-table-cell-role="th">GS</th>
+<th data-quarto-table-cell-role="th">G_batting</th>
+<th data-quarto-table-cell-role="th">G_defense</th>
+<th data-quarto-table-cell-role="th">G_p_app</th>
+<th data-quarto-table-cell-role="th">G_c</th>
+<th data-quarto-table-cell-role="th">G_1b</th>
+<th data-quarto-table-cell-role="th">G_2b</th>
+<th data-quarto-table-cell-role="th">G_3b</th>
+<th data-quarto-table-cell-role="th">G_ss</th>
+<th data-quarto-table-cell-role="th">G_lf_app</th>
+<th data-quarto-table-cell-role="th">G_cf_app</th>
+<th data-quarto-table-cell-role="th">G_rf_app</th>
+<th data-quarto-table-cell-role="th">G_of_app</th>
+<th data-quarto-table-cell-role="th">G_dh</th>
+<th data-quarto-table-cell-role="th">G_ph</th>
+<th data-quarto-table-cell-role="th">G_pr</th>
+<th data-quarto-table-cell-role="th">player_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td></td>
+<td>331</td>
+<td>0</td>
+<td>139</td>
+<td>331</td>
+<td>331</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>aardsda01</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td></td>
+<td>3298</td>
+<td>3173</td>
+<td>3298</td>
+<td>2985</td>
+<td>0</td>
+<td>0</td>
+<td>210</td>
+<td>43</td>
+<td>7</td>
+<td>0</td>
+<td>315</td>
+<td>308</td>
+<td>2174</td>
+<td>2760</td>
+<td>201</td>
+<td>122</td>
+<td>1</td>
+<td>aaronha01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td></td>
+<td>437</td>
+<td>206</td>
+<td>437</td>
+<td>346</td>
+<td>0</td>
+<td>0</td>
+<td>232</td>
+<td>7</td>
+<td>10</td>
+<td>0</td>
+<td>135</td>
+<td>1</td>
+<td>2</td>
+<td>137</td>
+<td>0</td>
+<td>102</td>
+<td>35</td>
+<td>aaronto01</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td></td>
+<td>448</td>
+<td>91</td>
+<td>81</td>
+<td>448</td>
+<td>448</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>aasedo01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td></td>
+<td>15</td>
+<td>4</td>
+<td>15</td>
+<td>9</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>7</td>
+<td>1</td>
+<td>abadan01</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The dataset looks quite clean already! We see the first 4 columns tally general position types, the final 2 (excluding player_id), tally games as a pinch hitter and pinch runner, while the G_[position] each tally games at a given position. The two steps we take to finish the job are dropping unnecessary columns, and converting game tallies to numeric values and then percentage shares.</p>
+<p>Additionally, a small subset of players have missing data for their positions. To combat this, we fill the missing values with equal percentages across the player, signaling no relative impact from position.</p>
+<div id="cell-64" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert values to numeric types</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>appearances_df <span class="op">=</span> appearances_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: pd.to_numeric(x, errors<span class="op">=</span><span class="st">'ignore'</span>))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the important columns to keep and normalize</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>position_cols <span class="op">=</span> [<span class="st">'G_p_app'</span>, <span class="st">'G_c'</span>, <span class="st">'G_1b'</span>, <span class="st">'G_2b'</span>, <span class="st">'G_3b'</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'G_ss'</span>, <span class="st">'G_lf_app'</span>, <span class="st">'G_cf_app'</span>, <span class="st">'G_rf_app'</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'G_dh'</span>]</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the games by position into percentages</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>appearances_df[position_cols] <span class="op">=</span> appearances_df[position_cols].div(appearances_df[position_cols].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>), axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter down to our final DataFrame</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>appearances_df <span class="op">=</span> appearances_df[position_cols <span class="op">+</span> [<span class="st">'player_id'</span>]]</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing values</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>appearances_df <span class="op">=</span> appearances_df.fillna(<span class="dv">1</span><span class="op">/</span><span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/x1/v8sbf2px7bd3mh5s_v4zrxp40000gn/T/ipykernel_53307/2786824259.py:2: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  appearances_df = appearances_df.apply(lambda x: pd.to_numeric(x, errors='ignore'))</code></pre>
+</div>
+</div>
+<p>Looking at the final DataFrame, we see that it is now clean and can be written to the processed data folder.</p>
+<div id="cell-66" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>appearances_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">G_p_app</th>
+<th data-quarto-table-cell-role="th">G_c</th>
+<th data-quarto-table-cell-role="th">G_1b</th>
+<th data-quarto-table-cell-role="th">G_2b</th>
+<th data-quarto-table-cell-role="th">G_3b</th>
+<th data-quarto-table-cell-role="th">G_ss</th>
+<th data-quarto-table-cell-role="th">G_lf_app</th>
+<th data-quarto-table-cell-role="th">G_cf_app</th>
+<th data-quarto-table-cell-role="th">G_rf_app</th>
+<th data-quarto-table-cell-role="th">G_dh</th>
+<th data-quarto-table-cell-role="th">player_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>aardsda01</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.064457</td>
+<td>0.013198</td>
+<td>0.002149</td>
+<td>0.0</td>
+<td>0.096685</td>
+<td>0.094537</td>
+<td>0.667281</td>
+<td>0.061694</td>
+<td>aaronha01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.599483</td>
+<td>0.018088</td>
+<td>0.025840</td>
+<td>0.0</td>
+<td>0.348837</td>
+<td>0.002584</td>
+<td>0.005168</td>
+<td>0.000000</td>
+<td>aaronto01</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>aasedo01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.888889</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.111111</td>
+<td>0.000000</td>
+<td>abadan01</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-67" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>appearances_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 21228 entries, 0 to 21227
+Data columns (total 11 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   G_p_app    21228 non-null  float64
+ 1   G_c        21228 non-null  float64
+ 2   G_1b       21228 non-null  float64
+ 3   G_2b       21228 non-null  float64
+ 4   G_3b       21228 non-null  float64
+ 5   G_ss       21228 non-null  float64
+ 6   G_lf_app   21228 non-null  float64
+ 7   G_cf_app   21228 non-null  float64
+ 8   G_rf_app   21228 non-null  float64
+ 9   G_dh       21228 non-null  float64
+ 10  player_id  21228 non-null  object 
+dtypes: float64(10), object(1)
+memory usage: 1.8+ MB</code></pre>
+</div>
+</div>
+<div id="cell-68" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>appearances_df.to_csv(<span class="st">'../../data/processed-data/appearances.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="final-dataset-building" class="level2">
+<h2 class="anchored" data-anchor-id="final-dataset-building">Final Dataset Building</h2>
+<p>Now that all of the individual DataFrames are cleaned (woohoo!), we move into condensing the data into one singular DataFrame for batters and one for pitchers, that we will use for future exploration and analysis. To accomplish this, we take the BBWAA voting DataFrame as our base, as it already contains only those players who have been voted on in a BBWAA ballot, and then we add extra features like the players stats on from our adjacent DataFrames.</p>
+<div id="cell-70" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the core DataFrames</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>final_dataset <span class="op">=</span> pd.read_csv(<span class="st">'../../data/processed-data/all_bbwaa_voting.csv'</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the stats DataFrames</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>batter_stats <span class="op">=</span> pd.read_csv(<span class="st">'../../data/processed-data/batter_career_stats.csv'</span>)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>pitcher_stats <span class="op">=</span> pd.read_csv(<span class="st">'../../data/processed-data/pitcher_career_stats.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-71" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_row_by_bp(player_id, batter_stats, pitcher_stats):</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> player_id <span class="kw">in</span> pitcher_stats.player_id.values:</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'pitcher'</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> player_id <span class="kw">in</span> batter_stats.player_id.values:</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'batter'</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'missing'</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Attach the batter/pitcher designation for each entry and check the results</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>final_dataset[<span class="st">'position'</span>] <span class="op">=</span> final_dataset.player_id.<span class="bu">apply</span>(<span class="kw">lambda</span> x: sort_row_by_bp(x, batter_stats, pitcher_stats))</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>final_dataset.position.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>position
+batter     3144
+missing    1226
+pitcher     530
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>Upon investigation of the players with ‘missing’ values for their position, we can confirm that the vast majority of the players are ‘missing’ because they were among the group to fail to be scraped in the data collection phase due to changes in underlying HTML. We see below the only names of players who did succesfully have data scraped.</p>
+<div id="cell-73" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> player <span class="kw">in</span> final_dataset[final_dataset.position <span class="op">==</span> <span class="st">'missing'</span>].player_id:</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> player <span class="op">==</span> <span class="st">'mccarjo99'</span>: <span class="co"># throws error bc the id is different across datasets</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    val <span class="op">=</span> all_player_stats_dict[player]</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(val, <span class="bu">str</span>):</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(player)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rickebr01
+rickebr01
+rickebr01
+rickebr01
+ensje01
+beaucji01</code></pre>
+</div>
+</div>
+<p>There are only 4 players left who did succesfully have data scraped. However, a quick seach reveals that these players were actually primarily manages or executives who played early enough that the ‘BBWAA’ eligibility rules were different such that they were voted on from this pool. Becasue of this, we will drop all players who are ‘missing’ in this dataset.</p>
+<div id="cell-75" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>final_dataset <span class="op">=</span> final_dataset[final_dataset.position <span class="op">!=</span> <span class="st">'missing'</span>]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>final_dataset.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">voting_year</th>
+<th data-quarto-table-cell-role="th">year_on_ballot</th>
+<th data-quarto-table-cell-role="th">votes_pct</th>
+<th data-quarto-table-cell-role="th">ly_votes_pct</th>
+<th data-quarto-table-cell-role="th">outcome</th>
+<th data-quarto-table-cell-role="th">position</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Ty Cobb</td>
+<td>cobbty01</td>
+<td>1936</td>
+<td>1</td>
+<td>98.2</td>
+<td>12.975208</td>
+<td>elected</td>
+<td>batter</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Babe Ruth</td>
+<td>ruthba01</td>
+<td>1936</td>
+<td>1</td>
+<td>95.1</td>
+<td>12.975208</td>
+<td>elected</td>
+<td>batter</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Honus Wagner</td>
+<td>wagneho01</td>
+<td>1936</td>
+<td>1</td>
+<td>95.1</td>
+<td>12.975208</td>
+<td>elected</td>
+<td>batter</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Nap Lajoie</td>
+<td>lajoina01</td>
+<td>1936</td>
+<td>1</td>
+<td>64.6</td>
+<td>12.975208</td>
+<td>limbo</td>
+<td>batter</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Tris Speaker</td>
+<td>speaktr01</td>
+<td>1936</td>
+<td>1</td>
+<td>58.8</td>
+<td>12.975208</td>
+<td>limbo</td>
+<td>batter</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now that we are sure that all dataset entries have a valid connection to the stats data, we split the data into batters and pitchers, before attaching the career stats</p>
+<div id="cell-77" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>pitcher_df <span class="op">=</span> final_dataset[final_dataset.position <span class="op">==</span> <span class="st">'pitcher'</span>]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>batter_df <span class="op">=</span> final_dataset[final_dataset.position <span class="op">==</span> <span class="st">'batter'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Before we merge the stats with the BBWAA voting data, we will also add in the scandal data as set forth in the earlier fangraphs paper. We do this with a manual list of known scandelous players as set forth in that paper. We also filter down to players in our dataset. Reasons for scandals include:</p>
+<ul>
+<li>Use of Performance Enhancing Drugs</li>
+<li>Gambling</li>
+<li>Conduct detrimental to the game and personal image</li>
+</ul>
+<p>After adding in the presence of a scandal, we remove the players with scandals, as the presense of a scandal essentially interferes with the normal voting process, and critically, is a factor known before the voting process itself. Thus, for future data we would also be able to exclude them from predicions.</p>
+<div id="cell-79" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the ids with scandals</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>scandal_ids <span class="op">=</span> [</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'bondsba01'</span>, <span class="st">'rodrial01'</span>,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pettian01'</span>, <span class="st">'ortizda01'</span>,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'schilcu01'</span>, <span class="st">'dykstle01'</span>,</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ramirma02'</span>, <span class="st">'mcgwima01'</span>,</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'rosepe01'</span>]</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scandal column in both the pitching and batting DataFrames</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>batter_df[<span class="st">'scandal'</span>] <span class="op">=</span> batter_df.player_id.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> x <span class="kw">in</span> scandal_ids <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>pitcher_df[<span class="st">'scandal'</span>] <span class="op">=</span> pitcher_df.player_id.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> x <span class="kw">in</span> scandal_ids <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove players with scandals</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>batter_df <span class="op">=</span> batter_df[batter_df.scandal <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>pitcher_df <span class="op">=</span> pitcher_df[pitcher_df.scandal <span class="op">==</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/x1/v8sbf2px7bd3mh5s_v4zrxp40000gn/T/ipykernel_53307/2900954371.py:10: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  batter_df['scandal'] = batter_df.player_id.apply(lambda x: 1 if x in scandal_ids else 0)
+/var/folders/x1/v8sbf2px7bd3mh5s_v4zrxp40000gn/T/ipykernel_53307/2900954371.py:11: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  pitcher_df['scandal'] = pitcher_df.player_id.apply(lambda x: 1 if x in scandal_ids else 0)</code></pre>
+</div>
+</div>
+<div id="cell-80" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>batter_df <span class="op">=</span> batter_df.merge(batter_stats, on<span class="op">=</span><span class="st">'player_id'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>pitcher_df <span class="op">=</span> pitcher_df.merge(pitcher_stats, on<span class="op">=</span><span class="st">'player_id'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we attach the appearances by position data with another merge</p>
+<div id="cell-82" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>batter_df <span class="op">=</span> batter_df.merge(appearances_df, on<span class="op">=</span><span class="st">'player_id'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>pitcher_df <span class="op">=</span> pitcher_df.merge(appearances_df, on<span class="op">=</span><span class="st">'player_id'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One other thing we must deal with, is the fact that some advanced metrics like championship win probability added don’t appear in the data until 1912, so players who played before and after 1912 all have depressed values due to its summative property. To counter this, we will override the values for these columns for the first few year of voting, until the league resumed play after WWII in 1946.</p>
+<div id="cell-84" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pitcher_df.head().columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>Index(['name', 'player_id', 'voting_year', 'year_on_ballot', 'votes_pct',
+       'ly_votes_pct', 'outcome', 'position', 'scandal', 'p_war', 'p_w',
+       'p_win_loss_perc', 'p_earned_run_avg', 'p_earned_run_avg_plus', 'p_g',
+       'p_gs', 'p_sho', 'p_sv', 'p_ip', 'p_so', 'p_whip', 'p_fip',
+       'p_strikeouts_per_base_on_balls', 'p_batting_avg',
+       'p_onbase_plus_slugging', 'p_home_run_perc', 'p_strikeout_perc',
+       'p_cwpa_def', 'p_baseout_runs', 'b_war', 'b_batting_avg',
+       'b_onbase_plus_slugging_plus', 'cy_youngs', 'gold_gloves', 'mvps',
+       'all_stars', 'G_p_app', 'G_c', 'G_1b', 'G_2b', 'G_3b', 'G_ss',
+       'G_lf_app', 'G_cf_app', 'G_rf_app', 'G_dh'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-85" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update some of the advanced stats for very early players</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>early_batters <span class="op">=</span> batter_df[batter_df.voting_year <span class="op">&lt;=</span> <span class="dv">1945</span>]</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>early_cwpa <span class="op">=</span>  early_batters.b_cwpa_bat.mean()</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>early_re24 <span class="op">=</span> early_batters.b_baseout_runs.mean()</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>batter_df.b_cwpa_bat <span class="op">=</span> batter_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: early_cwpa <span class="cf">if</span> x.voting_year <span class="op">&lt;=</span> <span class="dv">1945</span> <span class="cf">else</span> x.b_cwpa_bat, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>batter_df.b_baseout_runs <span class="op">=</span> batter_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: early_re24 <span class="cf">if</span> x.voting_year <span class="op">&lt;=</span> <span class="dv">1945</span> <span class="cf">else</span> x.b_baseout_runs, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co"># And do that same for the pitchers DataFrame</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>early_pitchers <span class="op">=</span> pitcher_df[pitcher_df.voting_year <span class="op">&lt;=</span> <span class="dv">1945</span>]</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>early_cwpa <span class="op">=</span>  early_pitchers.p_cwpa_def.mean()</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>early_re24 <span class="op">=</span> early_pitchers.p_baseout_runs.mean()</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>pitcher_df.p_cwpa_def <span class="op">=</span> pitcher_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: early_cwpa <span class="cf">if</span> x.voting_year <span class="op">&lt;=</span> <span class="dv">1945</span> <span class="cf">else</span> x.p_cwpa_def, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>pitcher_df.p_baseout_runs <span class="op">=</span> pitcher_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: early_re24 <span class="cf">if</span> x.voting_year <span class="op">&lt;=</span> <span class="dv">1945</span> <span class="cf">else</span> x.p_baseout_runs, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we write out our final datasets to the processed data folder!</p>
+<div id="cell-87" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>batter_df.to_csv(<span class="st">'../../data/processed-data/final_batter_df.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>pitcher_df.to_csv(<span class="st">'../../data/processed-data/final_pitcher_df.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that all of our data is cleaned, we move forward to exploring our datasets in depth, and begin analyzing our data! This can be found in the <strong>Exploratory Data Analysis</strong> tab.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
