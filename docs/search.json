@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jared Zirkes - Data Science Portfolio",
+    "section": "",
+    "text": "Welcome to My Data Science Portfolio\nWelcome to the official website of Jared Zirkes, a passionate data scientist. On this site, you’ll find a collection of my data science projects, insights, and experiments, showcasing my journey in the world of data analysis, machine learning, and statistical modeling.\n\nAbout Me\nI hold a Master of Science in Data Science & Analytics from Georgetown University and a Bachelor of Science in Business Administration with a focus on Finance, Economics-Strategy, and Business Analytics. With a background in analytics, I have experience in conducting research, building predictive models, and delivering actionable insights.\n\n\nProjects\nHere are some of the key data science projects I’ve worked on:\n\nMLB Hall of Fame Career Stats: A project aimed at analyzing career statistics of MLB players to predict future Hall of Fame inductees.\nNews Recommender System: A document retrieval system designed to recommend articles from diverse viewpoints.\nBaseball Simulation: A machine learning model to simulate MLB games based on player and team data.\n\nFor more details, visit each individual project page.\n\n\nContact\nFeel free to reach out to me via email for collaboration, inquiries, or just to connect!"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact - Jared Zirkes",
+    "section": "",
+    "text": "Contact Me\nI am always open to collaboration, inquiries, or just connecting with other professionals. Feel free to reach out to me!\n\nEmail: jared@example.com\nLinkedIn: linkedin.com/in/jaredzirkes\nGitHub: github.com/yourusername\n\nLooking forward to hearing from you!"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects - Jared Zirkes",
+    "section": "",
+    "text": "Here are some of the data science projects I have worked on:\n\n\nIn this project, I analyze career statistics of MLB players to predict future Hall of Fame inductees. The model uses various performance metrics and historical voting trends to make predictions.\n\nTechnologies used: Python, Pandas, Scikit-learn, Matplotlib\nKey Features: Data cleaning, feature engineering, predictive modeling, visualization\n\nView Project on GitHub\n\n\n\n\nThis document retrieval system is designed to recommend articles from diverse viewpoints to users based on their preferences. It uses natural language processing (NLP) to match articles with similar topics.\n\nTechnologies used: Python, NLP, Flask, Scikit-learn\nKey Features: Text similarity, machine learning, recommendation systems\n\nView Project on GitHub\n\n\n\n\nA machine learning model simulating baseball games based on player and team data. This project focuses on creating a realistic simulation by incorporating various factors such as player stats, historical performance, and game conditions.\n\nTechnologies used: Python, TensorFlow, Pandas\nKey Features: Simulations, model training, performance analysis\n\nView Project on GitHub"
+  },
+  {
+    "objectID": "projects.html#mlb-hall-of-fame-career-stats",
+    "href": "projects.html#mlb-hall-of-fame-career-stats",
+    "title": "Projects - Jared Zirkes",
+    "section": "",
+    "text": "In this project, I analyze career statistics of MLB players to predict future Hall of Fame inductees. The model uses various performance metrics and historical voting trends to make predictions.\n\nTechnologies used: Python, Pandas, Scikit-learn, Matplotlib\nKey Features: Data cleaning, feature engineering, predictive modeling, visualization\n\nView Project on GitHub"
+  },
+  {
+    "objectID": "projects.html#news-recommender-system",
+    "href": "projects.html#news-recommender-system",
+    "title": "Projects - Jared Zirkes",
+    "section": "",
+    "text": "This document retrieval system is designed to recommend articles from diverse viewpoints to users based on their preferences. It uses natural language processing (NLP) to match articles with similar topics.\n\nTechnologies used: Python, NLP, Flask, Scikit-learn\nKey Features: Text similarity, machine learning, recommendation systems\n\nView Project on GitHub"
+  },
+  {
+    "objectID": "projects.html#baseball-simulation",
+    "href": "projects.html#baseball-simulation",
+    "title": "Projects - Jared Zirkes",
+    "section": "",
+    "text": "A machine learning model simulating baseball games based on player and team data. This project focuses on creating a realistic simulation by incorporating various factors such as player stats, historical performance, and game conditions.\n\nTechnologies used: Python, TensorFlow, Pandas\nKey Features: Simulations, model training, performance analysis\n\nView Project on GitHub"
+  }
+]

@@ -1,10 +1,10 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Jared Zirkes - Data Science Portfolio"
   description: "A portfolio showcasing my data science projects."
-  output-dir: "docs"
   navbar:
     left:
       - text: "Home"
