@@ -1,0 +1,53 @@
+---
+title: "Projects - Jared Zirkes"
+author: "Jared Zirkes"
+output: 
+  html_document:
+    theme: cosmo
+    toc: true
+    navbar:
+      title: "Projects"
+      left:
+        - text: "Home"
+          href: "index.html"
+        - text: "Contact"
+          href: "contact.html"
+---
+
+# Data Science Projects
+
+Here are some of the data science projects I have worked on:
+
+## MLB Hall of Fame Career Stats
+
+In this project, I analyze career statistics of MLB players to predict future Hall of Fame inductees. The model uses various performance metrics and historical voting trends to make predictions.
+
+- **Technologies used**: Python, Pandas, Scikit-learn, Matplotlib
+- **Key Features**: Data cleaning, feature engineering, predictive modeling, visualization
+
+[View Project on GitHub](https://github.com/yourusername/mlb-hall-of-fame)
+
+---
+
+## News Recommender System
+
+This document retrieval system is designed to recommend articles from diverse viewpoints to users based on their preferences. It uses natural language processing (NLP) to match articles with similar topics.
+
+- **Technologies used**: Python, NLP, Flask, Scikit-learn
+- **Key Features**: Text similarity, machine learning, recommendation systems
+
+[View Project on GitHub](https://github.com/yourusername/news-recommender)
+
+---
+
+## Baseball Simulation
+
+A machine learning model simulating baseball games based on player and team data. This project focuses on creating a realistic simulation by incorporating various factors such as player stats, historical performance, and game conditions.
+
+- **Technologies used**: Python, TensorFlow, Pandas
+- **Key Features**: Simulations, model training, performance analysis
+
+[View Project on GitHub](https://github.com/yourusername/baseball-simulation)
+
+---
+

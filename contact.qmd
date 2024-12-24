@@ -1,0 +1,27 @@
+---
+title: "Contact - Jared Zirkes"
+author: "Jared Zirkes"
+output: 
+  html_document:
+    theme: cosmo
+    navbar:
+      title: "Contact"
+      left:
+        - text: "Home"
+          href: "index.html"
+        - text: "Projects"
+          href: "projects.html"
+---
+
+# Contact Me
+
+I am always open to collaboration, inquiries, or just connecting with other professionals. Feel free to reach out to me!
+
+- **Email**: [jared@example.com](mailto:jared@example.com)
+- **LinkedIn**: [linkedin.com/in/jaredzirkes](https://www.linkedin.com/in/jaredzirkes)
+- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
+
+Looking forward to hearing from you!
+
+---
+
