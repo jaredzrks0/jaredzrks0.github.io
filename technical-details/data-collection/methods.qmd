@@ -1,0 +1,14 @@
+# Methods
+
+To collect the necessary data from Baseball Reference, we utilize Python's *Beautiful Soup* package for webscraping. Thankfully, the underlying data is in a nice tabular format, so the majority of the work can be completed by simply parsing the HTML to find the required tables and cells, before 'rebuilding' into DataFrames with *Pandas*.
+
+To facilitate the webscraping, we develop 2 classes functions to crawl, collect, and save the data for each of our 2 major data origins, individual players and prior Hall of Fame votes. An outline of the two classes can be seen below:
+
+| **Class Name Name** | PlayerScraper | HOFScraper 
+|:-----------:|:------------:|:------------:|
+| **Main Function #1** | <u>**scrape_player_info**</u> <br> Collects names and IDs for all MLB players| <u>**scrape_hof_inductees**</u> <br> Collects a list of all players who have been inducted to the Hall of Fame, along with their mothod of induction and final vote total. |
+| **Main Function #2** | <u>**scrape_player_stats**</u> <br> Collects the yearly an career batting+pitching stats for a given set of mlb players, along with their career awards| <u>**scrape_hof_voting**</u> <br> Collects the dataset of all annual BBWA Hall of Fame voting by player and year |
+
+## Classes
+
+**See below for the full underlying PlayerScraper class**

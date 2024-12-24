@@ -1,0 +1,29 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!projects"
+  resources:
+    - projects/dsan-5000/_site
+
+website:
+  title: "Portfolio"
+  favicon: "images/gu-logo.png"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+
+      - text: "Projects"
+        menu: 
+          - text: DSAN-5000
+            href: projects/dsan-5000/_site/index.html
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+
+

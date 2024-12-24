@@ -1,0 +1,56 @@
+# Introduction
+
+## What is Unsupervised Learning?
+
+In this section, we explore a number of 'unsupervized learning' techniques in order to both again build upon our understanding of the data at hand, but also to try and uncover new interesting or hidden relationships within the BBWAA voting data. For some background, unsupervised learning is a branch of machine learning where the algorithms we employ are **not given the underlying truth about each point (in our case the voting result - elected, expired, etc.)**. Because the machine does not have the ground truths, it works to find general underlying trends or patterns in the data[@ibm_supervised_nodate]. It is these general patterns and trends that are quite helpful to us as baseball fans, in learning about how BBWWAA voting functions.
+
+Within the realm of unsupervised learning, there are two major tasks that we will utilize in this section. They are **clustering** and **dimensionality reduction**. Clustering is the process of grouping data points into distinct groupings based on the underlying features of each point[@ibm_what_nodate]. By converting the data from a singular dataset into subsets of 'similar' groupings, again, based on underlying similarities of each datapoint, we can learn about the relationships between different datapoints, different groupings within our data, and most importantly what drives these similarities and differences. We remember that during this process our computer is not given the truthful group labels for each datapoint, so it relys on the features of the each datapoint for its grouping process. [@ibm_what_nodate].
+
+The second process, dimensionality reduction, is used to reduce the number of dimensions our data exists in. While this sounds complicated, if we remember that each column, or feature represents a dimension of the data, this process boils down to reducing the number of columns for the data[@ibm_dimensionality_nodate]. **Ideally, we do this in ways that preserve the 'essense' of the original data**, so that we don't lose significant useful information that can be used later during the process. Dimensionality reduction offers a few important benefits. First, it makes data visualization of datasets with greater than 3 dimensions possible, by creating the ability to convert the data back into a 2-d or 3-d space. Beyond this however, it can also help make prediction models more accurate on unseen data by reducing correlation between features (multicolinearity) among other benefits [@ibm_dimensionality_nodate].
+
+## Unsupervised Methods Used
+
+In the following Unsupervised Learning section, we will utilize a number of both clustering  and dimensionality reduction techniques. We outline the chosen methods below, alongside a brief explanation of how they work:
+
+### Clustering
+
+#### KMeans
+
+KMeans is one of the more popular 'centroid based' clustering techniques, meaning the model defines a number of 'center points' or centroids to act as the centers of each grouping, and assigns each datapoint to the group belonging to the centroid which it is closest to. As a result, this classifies similar points to the same centroid/group, as they tend to already exist close to one another[@ibm_what_nodate]. The KMeans clustering algorithm works in the following way.
+
+1. A user defined number (k) of centroids are chosen, and the machine randomly places them in the feature space
+2. Each datapoint in the dataset is classified to the closest centroid, resulting in k groups of datapoints
+3. The 'center' of each group is calculated, and the centroids are moved to these centers
+   1. To calculate the centers, the mean of each group is taken, hence the name KMeans
+4. Steps 1-3 are repeated until the centers no longer change
+
+The biggest decision when using KMeans is the number of centroids to choose, as this drastically changes the final result of the algorithm. If we know the truthful number of groupings, we can use this number, otherwise it is common practice to run the algorithm with a multitude of different cluster numbers, and choose the final result that results in the most 'distinct' clusters. Distinct-ness can be calculated with a few metrics such as the inertia, but in essence we are looking for clusters that are tightly packed to one another, while remaining far away from other clusters[@ibm_k-means_nodate].
+
+#### DBSCAN
+
+DBSCAN (Density Based Spatial Clustering of Applications with Noise), unlike a centroid based method, is a **Density based method** meaning it created clusters of the data based on the density of the data at specific points. This is calculated by looking at the number of points which are 'close' to any given other point, with closeness being a distance again defined by the user[@yenigun_dbscan_2024]. 
+
+There are generally two important benefits of DBSCAN over K-Means. First, the user does not have to determine the number of clusters. DBSCAN is automatically create its 'optimal' number of clusters based on the relative densities of the dataset. The second benefit is that DBSCAN is much less sensetive to outliers. In K-Means, an outlier can drag the cluster out toward it during the means calculations, but DBSCAN is able to classify outliers as 'noise', and not assign them to specific clusters[@yenigun_dbscan_2024].
+
+### Dimensionality Reduction
+
+#### PCA
+Principal Component Analysis, or PCA, is one of the most popular dimensionality reduction techniques, reducing the dimensions of a dataset by projecting the data onto the 'principal components' of the data. These principal components are created by using the eigenvectors of the eigenvalues of the data's covariance matrix[@ibm_dimensionality_nodate]. The user can chose the number of principal components to project onto, which directly determines the number of dimensions the resulting data will exist in after the projection. 
+
+The added benefit of PCA is that by projecting onto the principal components, we are minimizing information loss during the reduction. Thus, our resulting data is as informationally similar to our original data as possible, but also much more free from multicolinearity and noise[@ibm_dimensionality_nodate]!
+
+#### t-SNE
+
+t-distributed Stochastic Neighbor Embedding, or t-SNE, is another method of dimensionality reduction that differs from PCA in its effectiveness with non-linear data. Rather than preserving the maximum variance of the dataset, its primary goal is to map data onto a lower dimension in such a way that points that are close to one another in the original dimensions stay close to one another in the resulting lower dimensions[@datacamp_introduction_2024]. Because of this, it is often a great visualization technique for reduced data. The DataCamp page on how t-SNE works offers a great explanation of the major steps within t-SNE, which I have included below:
+
+1. t-SNE models a point being selected as a neighbor of another point in both higher and lower dimensions. It starts by calculating a pairwise similarity between all data points in the high-dimensional space using a Gaussian kernel. The points far apart have a lower probability of being picked than the points close together[@datacamp_introduction_2024]. 
+2. The algorithm then tries to map higher-dimensional data points onto lower-dimensional space while preserving the pairwise similarities[@datacamp_introduction_2024].
+
+## Summary
+Now that we are familiar with the underpinnings of supervised learning, including the major techniques and applications of Clustering and Dimensionality Reduction, we can now move forward by applying these techniques to our BBWWAA voting dataset to visualize and explore the underlying relationships of the data!
+
+   
+
+
+
+

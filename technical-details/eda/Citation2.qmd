@@ -1,0 +1,14 @@
+We very quickly see that electio to the Hall of Fame is quite difficult, even if you are a player worthy enough of being selected to the ballot! For both pitchers and hitters, the most common occurence is elimination, quickly followed by limbo. For each position, elected players only represent <10% of the total voted body.
+
+We wonder however, if this distribution, and general likelihoods have changed overtime and the game itself and potentially perspectevs on the Hall of Fame have changed. To do this, we split the history of baseball into 3 distinct categories there is often much discussion as to how the history of baseball should be split, with some views containing many more smaller eras, but sor simplicity, we group the timeline into three larger ones.
+
+- **The Golden Age** (1936-1968)
+  - A contemporary era of baseball, filled with a number of all-time legends. During this era baseball explodes in popularity. The 'balance of power' shifts heavily towards pitchers near the end, resulting in a change to pitching mound dimensions to artifically increase offense league wide[@wikipedia_contributers_golden_2024].
+- **The Expansion Era** (1969-1994)
+  - Beginning with the lowering of the mound, offense gradually increases throughout this era. Additionally, the leage expands on multiple occasions as the sport continues to increase in populatity[@br_bullpen_expansion_nodate ]
+- **The Modern Era**
+  - The Modern Era begins in 1995 when Major League Baseball breaks its strike, and popularity is fueled again by the home run races and doping scandals of the 1990s. The era continues into the modern day, where hitting for power, and throwing with maximum speed are emphasized, alongside a revolution of advanced scouting, training, and analysis[@wikipedia_contributers_history_2024]!
+
+While many players have played across two eras, we will filter player/votes into the era belonging to the year of the vote, which represents the mindset of the BBWAA at the time of the vote.
+
+We begin by plotting the number of elections over time, segmenting by era

@@ -1,0 +1,24 @@
+# Summary
+
+## Challenges
+Three major challengs arose during the data collection process. These are **commented HTML, request limiting, and changes in HTML formatting**.
+
+#### Commented HTML
+
+While all tables are visually present on the Baseball Reference webpage for individual player stats, tables beyond the standard stats are coded as comments in the HTML. Becuase of this, BeautifulSoup fails to read them in with a simple find_all call. To account for this, we build the try/except blocks into the advanced stats scraping that fall back onto searching within the commented HTML blocks for the given tables.
+
+#### Request limiting 
+
+To project servers, Baseball Reference limits requests to no more than 20/minute. As such, all Baseball Reference scraping code contains a 4 second sleep between requests. While this is not an issue for HOF scraping, there are ~23k baseball players we scrape stats for, resulting in ~25 hours of downtime. With this limitation present, all player data was scraped on a separate mini PC and final data transfered back to the local machine. To optimize collection speed, one could parallelize the collection process across multiple machines, each scraping data for a different set of players, although this is likely not in good faith to the Baseball Reference Terms of Use.
+
+#### Changes in HTML formatting
+
+For ~9% of individual player stats, the HTML of the Baseball Reference webpage was changes in ways that did not allow our constructed scraping class to retrieve the data. As a result, we do not have data for these players, unless they have been inducted into the Hall of Fame, in which case we have basic batting+pitching stats from their Hall of Fame page. If time permits in a future analysis, we can create different 'branches' of our stats scraper to account for these HTML differences on an individual by individual basis and complete the full dataset.
+
+## Benchmarks
+
+Aside from the two challenges, all data collection processes went as expected. Additinally, final data collection aligns with ingoing expectations and prior research standards, as MLB data is static history, with a limited universe of commonly used metrics.
+
+## Conclusion and Future Steps
+
+Now that the all data has been collected, we can move forward and take a deeper dive into learning about the data we have collected, as we clean it and begin exploring trends as they relate to our primary research question! To see these analyses, toggle to the **Data Cleaning** and **Exploratory Data Analyis** tabs of the website.

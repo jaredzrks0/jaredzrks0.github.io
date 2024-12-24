@@ -1,0 +1,77 @@
+---
+format:
+   html:
+      grid:
+         sidebar-width: 250px
+         body-width: 1000px
+         margin-width: 250px
+---
+
+# <u>Predicting Immortality: An Analysis of Baseball's Hall of Fame </u>  
+![The Plaque Gallery at the Baseball Hall of Fame](assets/photo_storage/HOFHall.jpeg){style="display: block; margin-left: auto; margin-right: auto;"} 
+
+## The National Baseball Hall of Fame
+
+Every summer, during a weekend in the middle of July, on a simple multi-purpose field in upstate New York, something magical happens as a small handful of baseball's legends are officially inducted into the National Baseball Hall of Fame (HOF)[@nbhof_museum_nodate]. In front of a crowd often reaching into the tens of thousands, a few players receive the highest honor in baseball: a lifetime in the Hall of Fame. The ceremony may only last a few hours, and the event a few days, but the honor is anything but temporary. These people have done something that only ~1% of all Major League players will accomplish: **They've achieved baseball immortality**. 
+
+But what does it take to achieve this greatness? Certainly one must be a superstar, but to what end? This project aims to answer that question, and offer a guide to fans and enthusiasts looking to understand the work it takes to put together a 'Hall of Fame' career on the field. 
+
+Before we can begin analyzing the Hall of Fame's election history, we must first ensure familiarity with the Hall of Fame, and it's election process. Established as a physical museum to honor and preserve the history of baseball, the Hall offers two paths for election. The first is via the **Baseball Writers' Association of America (BBWAA) Committe**, which is the primary method of election, and used for recently retired players[@nbhof_bbwaa_nodate]. The second is the **Era Committees Election**, which is comprised of Hall of Fame players, plus executives and media members, and elects players no longer eligible under BBWA rules, as well as former managers, umpires, and baseball executives[@nbhof_era_nodate]. This analysis focuses solely on election via the BBWA process, as it best represents MLB players who achieved 'great' on the field careers.
+
+The Baseball Hall of Fame also outlines eligibility and voting guidelines for election under the BBWAA system. For a simple explanation of the process, a highlight of major requirements are outlined below:
+
+- **Eligibility Guidelines**[@nbhof_bbwaa_nodate]
+  - To appear on the BBWAA HOF Election ballot, players must:
+    - Have played in parts of 10 Major League seasons
+    - Have stopped playing at least 5 years ago, and no more than 15 years ago
+    - Be selected by a screening committee to appear on the full BBWAA voting ballot for the first time
+  
+- **Voting Guidelines**[@nbhof_bbwaa_nodate]
+  - Once eligible and appearing on ballot, a player remains on the ballot until:
+    - The player is no longer eligible (generally after 10 ballots)
+    - The player revieves <5% of the BBWAA vote in a given year
+    - The player recieved >75% of the BBWA vote in a given year (and is elected)
+
+## Project Goals
+
+Given the extreme interest in baseball, its history, and its future Hall of Fame elections, this project will dive into the world of BBWAA HOF elections, and answer a number of questions of interest. Topics of focus include:
+
+- What does it take to make the Hall of Fame?
+- Has the benchmark for Hall of Fame election changed over time alongside the game itself?
+- Can the election and/or exclusion from the Hall of Fame for a player up for vote be predicted?
+- Can the actual vote % received during a BBWAA vote be predicted?
+
+Throughout the following website, we offer answers to these questions in the form of [Exploratory Analysis and Visualization](technical-details/eda/main.ipynb), in addition to data-driven prediction models, in both ['Supervised'](technical-details/supervised-learning/main.ipynb) and ['Unsupervised'](technical-details/unsupervised-learning/main.ipynb) methods.
+
+## Prior Work
+
+Baseball is a very heavily researched sport, both in terms of on-field performance, as well as history. This universe has also expanded rapidly in the last few decades, with advancements into advanced analytics and Sabermetric research[@sabr_guide_nodate]. As a result, our project has the benefit of building off a number of prior works.
+
+The history of predicting a player's likelihood of making the Hall of Fame dates back years, and encompasses methods that range in complexity. On the simpler side, there are a number of commonly cited baseline metrics, including:
+
+#### Baseline Metrics
+
+- **Bill James's Hall of Fame Monitor**
+  - Invented by one of the fathers of advanced baseball research, Bill James[@sabr_guide_nodate], the Hall of Fame monitor assigns 'points' for in-career accomplishments, with the expectation that 100 points gives a player a good chance to be elected, and 130 points is a 'virtual clinch'. An abbreviated selection of points can be seen below, with the full system linked [here](https://www.baseball-reference.com/about/leader_glossary.shtml#hof_monitor).
+    - 8 points for winning and MVP award
+    - 10 points for each season hitting 50 home runs
+    - 50 points for 3,500 career hits
+    - 20 points for 4,000 career pitching strikeouts
+
+ {{< pagebreak >}}
+
+- **Jaffe WAR Score System (JAWS)**
+  - The JAWS method offers a much simplier estimation of Hall of Fame 'worthy-ness', by utilizing the singular baseball metric Wins Above Replacement (WAR). WAR measures the number of wins an individual player creates for his team, indexed over the expected number of wins 'the next man up' might provide[@mlb_war_nodate]. Today, WAR is one of the most commonly cited stats to quantify how good a player is overall.
+  - JAWS is calculated by averaging the career WAR for a player with the sum of his 7 highest years of WAR, offering a look at both his overall strength and peak strength, before indexing over other players in from the same defensive position[@baseballreference_hall_nodate]. This creates a simple relative understanding of how the player performed against other possible Hall of Fame candidates.
+
+#### Advanced Research
+
+Beyond simple metrics, there too is previous research on the predictibility of Hall of Fame Elections. In his paper titled, 'A Predictive Model of Whether a Major League Baseball Player Will be Inducted into the Hall of Fame', Aaron Springer fits different Machine Learning models on a smattering of baseball stats across ~200 former MLB players to classify Hall of Famers and non-Hall of Famers with strong accuracy[@springer_predictive_2021]. Additionally, in a paper published on FanGraphs, a site for advanced baseball research, one user trains an xgboost model on WAR based metrics, while also including external player information, such as the presence of scandals like doping and gambling [@sweatypants_predicting_2022].
+
+## Moving Forward
+
+Our projects aims to build upon prior research in a number of ways. Firstly, while prior works create a solid fountation, some do not account for the drastic changes the game of baseball has gone through in its long history. Additionally, much of the prior work aims to predict the presence of a Hall of Fame induction given a player, but we look to predict elections at the time of the ballot, which leverages a single-step markov assumption that the prior year's (and only the prior year's) voting history can help predict the current year's results. Finally, we also significantly expand upon the player pool, by using our models to answer if any players throughout MLB history have been 'wrongfully' left out of the Hall of Fame.
+
+## Next Steps
+
+To continue learning about this project, you can continue to the [data collection](technical-details/data-collection//main.ipynb) tab, where the underlying data sources powering this project are discussed.

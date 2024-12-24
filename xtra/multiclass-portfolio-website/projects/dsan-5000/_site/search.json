@@ -1,0 +1,401 @@
+[
+  {
+    "objectID": "collaborators.html",
+    "href": "collaborators.html",
+    "title": "Team members",
+    "section": "",
+    "text": "Note: If, and only if, you’re working individually, then this page can be deleted and removed from the website.\nIf you are working as a team, at the end, you can duplicate the project and add it to your individual portfolio websites. If you do, you MUST retain attribution to your teammates. Removing attribution would constitute plagiarism."
+  },
+  {
+    "objectID": "collaborators.html#member-2",
+    "href": "collaborators.html#member-2",
+    "title": "Team members",
+    "section": "Member-2",
+    "text": "Member-2\nProvide their name, a link to their “About Me” page, and add a headshot.\nAlso, describe their project roles.\nMember-2 weekly project contribution log:\nWeek-02: Oct 21, 2024\n\nModeling and Analysis\n\nPerformed exploratory data analysis (EDA) to uncover patterns.\nBuilt and fine-tuned machine learning models.\nValidated models using appropriate metrics and cross-validation.\nImplemented model deployment and monitored performance.\n\nVisualization and Presentation\n\nCreated visualizations to support data-driven insights.\nChose effective visual formats to highlight trends and key results.\nEnsured charts and graphs were properly labeled and easy to interpret.\n\nReview and Feedback\n\nValidated the accuracy of data analysis and conclusions.\nProvided feedback on the overall structure and clarity of the report.\nEnsured that the report effectively communicated its message to the target audience."
+  },
+  {
+    "objectID": "technical-details/data-collection/introduction.html",
+    "href": "technical-details/data-collection/introduction.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Overview\nOn this page, provide an overview/summary of what you do on this page for technical staf, including goals, motivation, and objectivef ()"
+  },
+  {
+    "objectID": "technical-details/data-collection/instructions.html",
+    "href": "technical-details/data-collection/instructions.html",
+    "title": "Instructions",
+    "section": "",
+    "text": "On this page, you will focus on data collection, which is an essential step for future analysis. You should have already selected a specific data-science question that can be addressed in a data-driven way.\nIt is recommended that you focus on one or two of the following data format, text, tabular, image, geospatial, or network data.\nTabular (e.g. CSV files) and text formats are highly recommended, as these are covered most thoroughly in the course. Deviating from these formats may require additional work on your end. Please avoid timeseries data formats, as these require special methods not covered in the course. You can include as many additional formats as you want. Your project will revolve around the data you gather and will include data collection, analysis, visualization, and storytelling."
+  },
+  {
+    "objectID": "technical-details/data-collection/instructions.html#saving-the-raw-data",
+    "href": "technical-details/data-collection/instructions.html#saving-the-raw-data",
+    "title": "Instructions",
+    "section": "Saving the raw data",
+    "text": "Saving the raw data\n\nDuring the collection phase, save the collected data locally to the raw-data folder, in the root of the project, for later processing.\n\nDo not sync this folder to GitHub.\n\nYou should also save files you download manually from online to this folder"
+  },
+  {
+    "objectID": "technical-details/data-collection/instructions.html#requirements",
+    "href": "technical-details/data-collection/instructions.html#requirements",
+    "title": "Instructions",
+    "section": "Requirements:",
+    "text": "Requirements:\n\nYour data must be relevant to the project’s overall goals and help solve your research questions.\nYou must use at least one API to collect your data.\nEnsure you have at least one regression target: a continuous quantity that can be used for regression prediction with other features.\nEnsure you have at least one binary classification target: a two-class (A,B) label that can be predicted using other features.\nEnsure you have at least one multi-classification target: a multi-class (A,B,C …) label that can be predicted using other features.\nDo not use a Kaggle topic—this project is meant to simulate a real-world project. Kaggle datasets are typically too clean and have already been prepped for analysis, which doesn’t align with the project’s goals.\n\nRemember, data is about quality, not quantity, so avoid handling large datasets unless necessary. Focus on data that tells a compelling story and supports the techniques you will apply (e.g., clustering, classification, regression)."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Landing page",
+    "section": "",
+    "text": "To begin the project, first read the instruction document (click here). This document is also accessible from the navigation bar.\nOnce you’ve completed that, you can proceed with the instructions found throughout the website."
+  },
+  {
+    "objectID": "instructions/topic-selection.html",
+    "href": "instructions/topic-selection.html",
+    "title": "Topic selection",
+    "section": "",
+    "text": "Start by selecting a broad topic area.\nHere are some examples:\n\nBio and Health\n\nClimate\n\nFinance and Economics\n\nPublic Policy\n\nMaterials Discovery\n\nTransportation\n\nEducation\n\nCrime and Punishment\n\nPolitics and Government\n\nZoology and Botany\n\nSocial Phenomena\n\n\n\n\n\nNarrow your focus to a topic that can realistically be addressed in a data driven way.\n\ne.g. Study the effect of climate change on extreme weather\nAvoid commonly used topics from Kaggle.\n\nClaim your topic in the “project topic page in the shared documeent”\n\nclick here to claim your topic\n\n\nEven if multiple students choose similar topics, each portfolio must be original. Portfolios that are too similar will be reviewed for plagiarism and may result in Honor Council violation.\n\n\n\nThe data science life cycle starts with well-posed questions, similar to the scientific method. A data science question is a broad idea that can be broken down into 5 to 10 smaller questions, guiding your investigation.\n\n“What effect is climate change having on frequency of extreme weather events? e.g hurricane, drought, forest fires, etc”\n\nHere are some additional example questions:\n\nHealth & Medicine\n\nWhat factors predict heart disease across different age groups?\n\nHow does cancer treatment effectiveness vary by demographics?\n\nCan wearables predict the onset of diabetes?\n\nClimate & Environment\n\nWhat is the impact of deforestation on regional climates?\n\nEducation\n\nHow do socioeconomic factors affect student performance?\n\nWhat is the impact of remote learning post-pandemic?\n\nSocial Science & Public Policy\n\nHow does income inequality correlate with crime rates?\n\nWhat factors influence voter turnout?\n\nFinance & Economics\n\nWhat indicators predict stock market crashes?\n\nHow does inflation impact consumer spending?\n\nTransportation\n\nHow has ride-sharing impacted taxi services?\n\nWhat are the busiest transportation hubs, and how can congestion be reduced?\n\nCrime & Law Enforcement\n\nWhat factors predict recidivism in former inmates?\n\nHow do different policing strategies impact crime rates?\n\nSports & Entertainment\n\nWhat factors predict an athlete’s long-term performance?\n\nCan machine learning predict sports match outcomes?\n\nTechnology & Social Media\n\nHow do online reviews impact product sales?\n\nWhat strategies drive viral social media campaigns?\n\n\nChoose a topic you’re passionate about, and develop creative, “outside-the-box” questions to guide your project throughout the course."
+  },
+  {
+    "objectID": "instructions/topic-selection.html#select-a-broad-topic-area",
+    "href": "instructions/topic-selection.html#select-a-broad-topic-area",
+    "title": "Topic selection",
+    "section": "",
+    "text": "Start by selecting a broad topic area.\nHere are some examples:\n\nBio and Health\n\nClimate\n\nFinance and Economics\n\nPublic Policy\n\nMaterials Discovery\n\nTransportation\n\nEducation\n\nCrime and Punishment\n\nPolitics and Government\n\nZoology and Botany\n\nSocial Phenomena"
+  },
+  {
+    "objectID": "instructions/topic-selection.html#narrow-your-focus",
+    "href": "instructions/topic-selection.html#narrow-your-focus",
+    "title": "Topic selection",
+    "section": "",
+    "text": "Narrow your focus to a topic that can realistically be addressed in a data driven way.\n\ne.g. Study the effect of climate change on extreme weather\nAvoid commonly used topics from Kaggle.\n\nClaim your topic in the “project topic page in the shared documeent”\n\nclick here to claim your topic\n\n\nEven if multiple students choose similar topics, each portfolio must be original. Portfolios that are too similar will be reviewed for plagiarism and may result in Honor Council violation."
+  },
+  {
+    "objectID": "instructions/topic-selection.html#data-science-questions",
+    "href": "instructions/topic-selection.html#data-science-questions",
+    "title": "Topic selection",
+    "section": "",
+    "text": "The data science life cycle starts with well-posed questions, similar to the scientific method. A data science question is a broad idea that can be broken down into 5 to 10 smaller questions, guiding your investigation.\n\n“What effect is climate change having on frequency of extreme weather events? e.g hurricane, drought, forest fires, etc”\n\nHere are some additional example questions:\n\nHealth & Medicine\n\nWhat factors predict heart disease across different age groups?\n\nHow does cancer treatment effectiveness vary by demographics?\n\nCan wearables predict the onset of diabetes?\n\nClimate & Environment\n\nWhat is the impact of deforestation on regional climates?\n\nEducation\n\nHow do socioeconomic factors affect student performance?\n\nWhat is the impact of remote learning post-pandemic?\n\nSocial Science & Public Policy\n\nHow does income inequality correlate with crime rates?\n\nWhat factors influence voter turnout?\n\nFinance & Economics\n\nWhat indicators predict stock market crashes?\n\nHow does inflation impact consumer spending?\n\nTransportation\n\nHow has ride-sharing impacted taxi services?\n\nWhat are the busiest transportation hubs, and how can congestion be reduced?\n\nCrime & Law Enforcement\n\nWhat factors predict recidivism in former inmates?\n\nHow do different policing strategies impact crime rates?\n\nSports & Entertainment\n\nWhat factors predict an athlete’s long-term performance?\n\nCan machine learning predict sports match outcomes?\n\nTechnology & Social Media\n\nHow do online reviews impact product sales?\n\nWhat strategies drive viral social media campaigns?\n\n\nChoose a topic you’re passionate about, and develop creative, “outside-the-box” questions to guide your project throughout the course."
+  },
+  {
+    "objectID": "instructions/expectations.html",
+    "href": "instructions/expectations.html",
+    "title": "General Tips and Expectations",
+    "section": "",
+    "text": "Remember, “slow and steady wins the race.” Making steady, incremental progress on a large project generally makes it more manageable. Rushing to throw something together under a tight deadline often turns the process into a nightmare.\n\n\n\nThis is a graduate-level class, so each project should be viewed as specifications, not simple step-by-step requirements.\nGraduate-level work must be creative, individualized, and of high quality. To achieve an A-level grade, you are expected to exceed the specifications and create unique, novel solutions.\n\nFor example: If you’re asked to build visualizations to support your data science story, you won’t be told how many or what type of visualizations to create. This is up to you, based on your data and the creativity and quality you want to demonstrate.\n\nWe want you to move away from expecting someone else to tell you what to do, how to do it, and how much to do. Instead, you’ll adopt a professional approach—reviewing specifications provided in the assignments, determining what’s needed to exceed expectations, and demonstrating professional excellence.\n\nThere are countless ways to approach the project requirements, so be creative and thoughtful. Instructions outline the minimum requirements, but exceeding them will elevate the quality of your work.\n\nAutonomy and Critical Thinking:\n\nIn the workplace, step-by-step instructions are rare. You’ll need to interpret broad requirements and deliver professional results. Producing high-quality, accurate work with limited guidance is a key professional skill.\nAt this stage, move away from asking, “Do I have to do XYZ?” Instead, critically analyze challenges. If something is unclear, investigate and break it down fundamentally.\n\nDeveloping problem-solving skills is crucial. While it’s important to work independently for at least 10–20 minutes, if you’re still stuck after 30 minutes, seek help. Being resourceful is important, but knowing when to ask for assistance is equally valuable.\n\n\n\nVisualizations are a critical component of your portfolio. Use them strategically to support your narrative. The more visual representations of your data, the better—higher-quality visualizations will result in a higher grade. Ensure that all graphics follow best practices:\n\nChoose the right chart type: Match the chart to the data (e.g., bar for categories, line for trends).\nMaintain simplicity: Avoid clutter and focus on the essential message.\nUse appropriate scales: Ensure axes have correct and intuitive scaling to avoid misinterpretation.\nLabel axes clearly: Include meaningful axis labels with units (e.g., “Temperature (°C)” or “Revenue ($)”).\nInclude descriptive titles: Provide a concise, informative title that explains the visualization’s main takeaway.\nEnsure consistency: Use uniform color schemes, fonts, and styles across all charts in a presentation.\nHighlight key data: Use contrasting colors or annotations to draw attention to important points or trends.\nKeep proportions accurate: Maintain correct data-to-visual size relationships to avoid distortion.\nConsider the audience: Tailor the level of detail and style to the audience’s technical proficiency.\nTest readability: Ensure fonts, colors, and elements are clear and legible in various formats and sizes.\nUse interactivity carefully: Interactive features should add clarity, not complexity, to the visual.\n\n\n\n\n\n\nWhile not required, practice is highly beneficial. It’s also a good habit to write your code from scratch, as this will build your problem-solving skills. You can use the code provided by professors as a reference, but always strive to write your own. Starting with a blank page is a valuable practice.\nTo get comfortable with the methods, review and modify the R and Python codes provided in class. Try applying these to your project data and experiment with creating small toy datasets, such as a CSV file or a text corpus. This helps you understand the structure of the data and what the algorithms are doing.\n\n\n\n\n\nAlways remember the following Debugging Steps:\n\nStep A: Copy the error message and search it online (Google or similar).\nStep B: Look through forums or documentation to find a solution.\nStep C: Implement the solution.\nStep D: If you’re still stuck, ask for help from classmates, TAs, or professors.\nStep E: Move on to the next issue and repeat the process.\n\n\n(Note: You can also use ChatGPT for debugging, but be cautious as the solutions may sometimes be inaccurate or incomplete.)"
+  },
+  {
+    "objectID": "instructions/expectations.html#get-started-early",
+    "href": "instructions/expectations.html#get-started-early",
+    "title": "General Tips and Expectations",
+    "section": "",
+    "text": "Remember, “slow and steady wins the race.” Making steady, incremental progress on a large project generally makes it more manageable. Rushing to throw something together under a tight deadline often turns the process into a nightmare."
+  },
+  {
+    "objectID": "instructions/expectations.html#graduate-level-work",
+    "href": "instructions/expectations.html#graduate-level-work",
+    "title": "General Tips and Expectations",
+    "section": "",
+    "text": "This is a graduate-level class, so each project should be viewed as specifications, not simple step-by-step requirements.\nGraduate-level work must be creative, individualized, and of high quality. To achieve an A-level grade, you are expected to exceed the specifications and create unique, novel solutions.\n\nFor example: If you’re asked to build visualizations to support your data science story, you won’t be told how many or what type of visualizations to create. This is up to you, based on your data and the creativity and quality you want to demonstrate.\n\nWe want you to move away from expecting someone else to tell you what to do, how to do it, and how much to do. Instead, you’ll adopt a professional approach—reviewing specifications provided in the assignments, determining what’s needed to exceed expectations, and demonstrating professional excellence.\n\nThere are countless ways to approach the project requirements, so be creative and thoughtful. Instructions outline the minimum requirements, but exceeding them will elevate the quality of your work.\n\nAutonomy and Critical Thinking:\n\nIn the workplace, step-by-step instructions are rare. You’ll need to interpret broad requirements and deliver professional results. Producing high-quality, accurate work with limited guidance is a key professional skill.\nAt this stage, move away from asking, “Do I have to do XYZ?” Instead, critically analyze challenges. If something is unclear, investigate and break it down fundamentally.\n\nDeveloping problem-solving skills is crucial. While it’s important to work independently for at least 10–20 minutes, if you’re still stuck after 30 minutes, seek help. Being resourceful is important, but knowing when to ask for assistance is equally valuable."
+  },
+  {
+    "objectID": "instructions/expectations.html#visualization-guidelines",
+    "href": "instructions/expectations.html#visualization-guidelines",
+    "title": "General Tips and Expectations",
+    "section": "",
+    "text": "Visualizations are a critical component of your portfolio. Use them strategically to support your narrative. The more visual representations of your data, the better—higher-quality visualizations will result in a higher grade. Ensure that all graphics follow best practices:\n\nChoose the right chart type: Match the chart to the data (e.g., bar for categories, line for trends).\nMaintain simplicity: Avoid clutter and focus on the essential message.\nUse appropriate scales: Ensure axes have correct and intuitive scaling to avoid misinterpretation.\nLabel axes clearly: Include meaningful axis labels with units (e.g., “Temperature (°C)” or “Revenue ($)”).\nInclude descriptive titles: Provide a concise, informative title that explains the visualization’s main takeaway.\nEnsure consistency: Use uniform color schemes, fonts, and styles across all charts in a presentation.\nHighlight key data: Use contrasting colors or annotations to draw attention to important points or trends.\nKeep proportions accurate: Maintain correct data-to-visual size relationships to avoid distortion.\nConsider the audience: Tailor the level of detail and style to the audience’s technical proficiency.\nTest readability: Ensure fonts, colors, and elements are clear and legible in various formats and sizes.\nUse interactivity carefully: Interactive features should add clarity, not complexity, to the visual."
+  },
+  {
+    "objectID": "instructions/expectations.html#coding",
+    "href": "instructions/expectations.html#coding",
+    "title": "General Tips and Expectations",
+    "section": "",
+    "text": "While not required, practice is highly beneficial. It’s also a good habit to write your code from scratch, as this will build your problem-solving skills. You can use the code provided by professors as a reference, but always strive to write your own. Starting with a blank page is a valuable practice.\nTo get comfortable with the methods, review and modify the R and Python codes provided in class. Try applying these to your project data and experiment with creating small toy datasets, such as a CSV file or a text corpus. This helps you understand the structure of the data and what the algorithms are doing."
+  },
+  {
+    "objectID": "instructions/expectations.html#debugging",
+    "href": "instructions/expectations.html#debugging",
+    "title": "General Tips and Expectations",
+    "section": "",
+    "text": "Always remember the following Debugging Steps:\n\nStep A: Copy the error message and search it online (Google or similar).\nStep B: Look through forums or documentation to find a solution.\nStep C: Implement the solution.\nStep D: If you’re still stuck, ask for help from classmates, TAs, or professors.\nStep E: Move on to the next issue and repeat the process.\n\n\n(Note: You can also use ChatGPT for debugging, but be cautious as the solutions may sometimes be inaccurate or incomplete.)"
+  },
+  {
+    "objectID": "instructions/llm-usage.html",
+    "href": "instructions/llm-usage.html",
+    "title": "LLM usage” UNFINISHED",
+    "section": "",
+    "text": "LLM usage” UNFINISHED\n\nYou may use LLM tools to generate documentation of how the methods work.\nEnsure you understand the content generated and that it is accurate.\nDo not rely solely on LLM tools for your explanations; they should enhance your understanding, not replace it.\n\nDO NOT, use chatGPT to write large portions of your text, if we suspect you did so, the following will happen\n\n\nThe department faculty will sit down with you one-on-one investigation and carefully ask you do go over your project in detail, explainging everything carefully and in.\nIf during this time, we feel that you insufficently understand the content, then the case will be documented and sent to the honor council.\n\n\nBasic Guidelines\nThe following are some basic guidelines for using LLMs in your project.\n\n(1): Use it as an accelerator NOT a replacement.\n\n(2): Clean and post process the LLM output. Usually the outputs are robotic and extremely verbose and still need many human “passes” to result in effective, readable outputs.\n\nAcceptable use cases:\n\nUsing LLM tools to comment your code qualifies as an acceptible use case in this project. You can also use or code re-formatters such as black to increase the readability of your code.\nYou can use LLM tools to accellerate this documentation, but you MUST cite the LLM tool after each chunk of text created by the LLM, otherwise it will be treated as plagarism # Example\n\nWe used BeautifulSoup to scrape product information from an e-commerce website for a price comparison project. First, we used the requests library to retrieve the HTML content of the web pages listing the products. With BeautifulSoup, we parsed the HTML and navigated the structure to extract relevant data, such as product names, prices, and user ratings. By targeting specific tags and attributes within the HTML, we were able to collect this information efficiently. The scraped data was then saved into a CSV file for further analysis, allowing us to compare prices across different retailers and generate insights on pricing trends. BeautifulSoup made the entire process straightforward, from parsing the HTML to extracting the exact elements we needed.1\n\n\n\n\n\nReferences\n\n1. ChatGPT, version-4o, OpenAI, may-13, 2024, chat.openai.com."
+  },
+  {
+    "objectID": "instructions/overview.html",
+    "href": "instructions/overview.html",
+    "title": "Project instruction:",
+    "section": "",
+    "text": "Note: You can delete this folder and remove it from the project website once you have read and understood the instructions. It shouldn’t be part of your final submission."
+  },
+  {
+    "objectID": "instructions/overview.html#select-a-broad-topic-area",
+    "href": "instructions/overview.html#select-a-broad-topic-area",
+    "title": "Project instruction:",
+    "section": "Select a broad topic area",
+    "text": "Select a broad topic area\nStart by selecting a broad topic area.\nHere are some examples:\n\nBio and Health\n\nClimate\n\nFinance and Economics\n\nPublic Policy\n\nMaterials Discovery\n\nTransportation\n\nEducation\n\nCrime and Punishment\n\nPolitics and Government\n\nZoology and Botany\n\nSocial Phenomena"
+  },
+  {
+    "objectID": "instructions/overview.html#narrow-your-focus",
+    "href": "instructions/overview.html#narrow-your-focus",
+    "title": "Project instruction:",
+    "section": "Narrow your focus",
+    "text": "Narrow your focus\n\nNarrow your focus to a topic that can realistically be addressed in a data driven way.\n\ne.g. Study the effect of climate change on extreme weather\nAvoid commonly used topics from Kaggle.\n\nClaim your topic in the “project topic page in the shared documeent”\n\nclick here to claim your topic\n\n\nEven if multiple students choose similar topics, each portfolio must be original. Portfolios that are too similar will be reviewed for plagiarism and may result in Honor Council violation."
+  },
+  {
+    "objectID": "instructions/overview.html#data-science-questions",
+    "href": "instructions/overview.html#data-science-questions",
+    "title": "Project instruction:",
+    "section": "Data Science Questions",
+    "text": "Data Science Questions\nThe data science life cycle starts with well-posed questions, similar to the scientific method. A data science question is a broad idea that can be broken down into 5 to 10 smaller questions, guiding your investigation.\n\n“What effect is climate change having on frequency of extreme weather events? e.g hurricane, drought, forest fires, etc”\n\nHere are some additional example questions:\n\nHealth & Medicine\n\nWhat factors predict heart disease across different age groups?\n\nHow does cancer treatment effectiveness vary by demographics?\n\nCan wearables predict the onset of diabetes?\n\nClimate & Environment\n\nWhat is the impact of deforestation on regional climates?\n\nEducation\n\nHow do socioeconomic factors affect student performance?\n\nWhat is the impact of remote learning post-pandemic?\n\nSocial Science & Public Policy\n\nHow does income inequality correlate with crime rates?\n\nWhat factors influence voter turnout?\n\nFinance & Economics\n\nWhat indicators predict stock market crashes?\n\nHow does inflation impact consumer spending?\n\nTransportation\n\nHow has ride-sharing impacted taxi services?\n\nWhat are the busiest transportation hubs, and how can congestion be reduced?\n\nCrime & Law Enforcement\n\nWhat factors predict recidivism in former inmates?\n\nHow do different policing strategies impact crime rates?\n\nSports & Entertainment\n\nWhat factors predict an athlete’s long-term performance?\n\nCan machine learning predict sports match outcomes?\n\nTechnology & Social Media\n\nHow do online reviews impact product sales?\n\nWhat strategies drive viral social media campaigns?\n\n\nChoose a topic you’re passionate about, and develop creative, “outside-the-box” questions to guide your project throughout the course."
+  },
+  {
+    "objectID": "instructions/overview.html#repository-setup",
+    "href": "instructions/overview.html#repository-setup",
+    "title": "Project instruction:",
+    "section": "Repository Setup",
+    "text": "Repository Setup\n\nYou MUST use GitHub Classroom to create your project repository. This ensures that TAs can access your code and track your progress.\nClone the repository to your local machine, which provides a basic directory structure."
+  },
+  {
+    "objectID": "instructions/overview.html#expectations-for-github-usage",
+    "href": "instructions/overview.html#expectations-for-github-usage",
+    "title": "Project instruction:",
+    "section": "Expectations for GitHub Usage",
+    "text": "Expectations for GitHub Usage\nYou will be graded on how effectively you use Git, which includes:\n\nThe incremental nature of your progress\nThe frequency and quality of your commits\nThe structure and organization of your repository\nHow well you follow these GitHub guidelines\n\nBe sure to make regular commits to GitHub (e.g., git add, git commit, git push) to sync your work and ensure a smooth development process.\n\n1. Use a Logical Repository Structure\n\nInclude an informative README file that explains the purpose of the project.\nOrganize your files logically to make it easier for collaborators and TAs to navigate.\nEnsure all files are well-documented, and code is easy to follow.\n\n\n\n2. Commit Regularly\n\nCommit your code frequently with meaningful commit messages that reflect the changes made. This will make it easier to track progress and roll back changes if necessary.\n\nExample of a good commit message: Added data cleaning script for tabular data\nExample of a poor commit message: Fix\n\n\n\n\n3. Data Storage\n\nDo not store your data in your repository.\n\nData should be store in the raw-data folder and the processed-data folder, these folders should be added to .gitignore.\nExample: Use Google Drive or GU Domains for large data files and provide access links within your repository.\n\n\n\n\n4. Syncing with GU Domains\n\nSync your GitHub repository with your GU Domains website before submission deadlines to keep your website up to date.\nEnsure your code repository and website are always in sync, especially before final submission, to avoid losing marks.\n\n\n\n5. Code Documentation\n\nWrite clear and detailed documentation for each file and function in your project.\nInclude a README.md file in your repository that explains the purpose of the project, how to run the code, and any necessary dependencies."
+  },
+  {
+    "objectID": "instructions/overview.html#collaboration-in-groups-if-applicable",
+    "href": "instructions/overview.html#collaboration-in-groups-if-applicable",
+    "title": "Project instruction:",
+    "section": "Collaboration in Groups (If Applicable)",
+    "text": "Collaboration in Groups (If Applicable)\nIf you are working in a group (maximum of 3 students), use GitHub’s collaboration features effectively:\n\nTask Assignment:\n\nAssign tasks to different team members using GitHub Issues or Project Boards.\n\nBranching and Pull Requests:\n\nUse branches for feature development and pull requests for code review before merging changes into the main branch.\n\nCommunication:\n\nRegularly communicate and review code with your teammates to avoid conflicts.\n\nEqual Contribution:\n\nEnsure that all team members contribute equally to the project. Unequal contributions will negatively affect individual grades.\nImportant: Any team member not contributing equally can be flagged by the group and may be penalized after review.\n\nDocumentation of Contributions:\n\nDocument each member’s contribution clearly in the collaborators.qmd file, specifying who worked on which aspects of the project.\n\nCode Reviews:\n\nConduct peer code reviews before merging changes into the main branch to maintain code quality and consistency."
+  },
+  {
+    "objectID": "instructions/overview.html#website-development",
+    "href": "instructions/overview.html#website-development",
+    "title": "Project instruction:",
+    "section": "Website Development",
+    "text": "Website Development\nIt is required that you build your website with Quarto."
+  },
+  {
+    "objectID": "instructions/overview.html#website-hosting",
+    "href": "instructions/overview.html#website-hosting",
+    "title": "Project instruction:",
+    "section": "Website Hosting",
+    "text": "Website Hosting\nYou MUST host your website on the Georgetown Domains web space.\nNo exceptions. You may NOT use anything other than Georgetown Domains to host your website. For example, no RPubs, WordPress, Squarespace, or any other website development toolset. Failure to comply with this rule will result in a ZERO."
+  },
+  {
+    "objectID": "instructions/overview.html#the-two-audiences",
+    "href": "instructions/overview.html#the-two-audiences",
+    "title": "Project instruction:",
+    "section": "The two audiences",
+    "text": "The two audiences\nKnowing your audience in data science writing is crucial because it shapes how you present information. Technical stakeholders may require detailed explanations of methodologies, while non-technical audiences need clear, simplified insights and data-driven conclusions. Tailoring your message ensures your analysis is both understandable and impactful, driving informed decision-making.\n\nExamples of technical audiences include data scientists, software engineers, and IT professionals. These individuals expect detailed explanations of models, algorithms, methodologies, or system architectures, and they’re comfortable with technical jargon, such as discussing hyperparameters, programming frameworks, or machine learning techniques.\nNon-technical audiences include executives, marketing teams, and clients. They prioritize high-level insights, actionable results, and visualizations that convey the impact of data without requiring an understanding of complex methods. For instance, a CEO may want to know how a model affects business strategy or revenue, without diving into the underlying technical details.\n\nIn this project you will cater to both audiences. This is done by having regions of your website for both audiences (see website struture)"
+  },
+  {
+    "objectID": "instructions/overview.html#get-started-early",
+    "href": "instructions/overview.html#get-started-early",
+    "title": "Project instruction:",
+    "section": "Get started early",
+    "text": "Get started early\nRemember, “slow and steady wins the race.” Making steady, incremental progress on a large project generally makes it more manageable. Rushing to throw something together under a tight deadline often turns the process into a nightmare."
+  },
+  {
+    "objectID": "instructions/overview.html#graduate-level-work",
+    "href": "instructions/overview.html#graduate-level-work",
+    "title": "Project instruction:",
+    "section": "Graduate level work",
+    "text": "Graduate level work\nThis is a graduate-level class, so each project should be viewed as specifications, not simple step-by-step requirements.\nGraduate-level work must be creative, individualized, and of high quality. To achieve an A-level grade, you are expected to exceed the specifications and create unique, novel solutions.\n\nFor example: If you’re asked to build visualizations to support your data science story, you won’t be told how many or what type of visualizations to create. This is up to you, based on your data and the creativity and quality you want to demonstrate.\n\nWe want you to move away from expecting someone else to tell you what to do, how to do it, and how much to do. Instead, you’ll adopt a professional approach—reviewing specifications provided in the assignments, determining what’s needed to exceed expectations, and demonstrating professional excellence.\n\nThere are countless ways to approach the project requirements, so be creative and thoughtful. Instructions outline the minimum requirements, but exceeding them will elevate the quality of your work.\n\nAutonomy and Critical Thinking:\n\nIn the workplace, step-by-step instructions are rare. You’ll need to interpret broad requirements and deliver professional results. Producing high-quality, accurate work with limited guidance is a key professional skill.\nAt this stage, move away from asking, “Do I have to do XYZ?” Instead, critically analyze challenges. If something is unclear, investigate and break it down fundamentally.\n\nDeveloping problem-solving skills is crucial. While it’s important to work independently for at least 10–20 minutes, if you’re still stuck after 30 minutes, seek help. Being resourceful is important, but knowing when to ask for assistance is equally valuable."
+  },
+  {
+    "objectID": "instructions/overview.html#visualization-guidelines",
+    "href": "instructions/overview.html#visualization-guidelines",
+    "title": "Project instruction:",
+    "section": "Visualization guidelines",
+    "text": "Visualization guidelines\nVisualizations are a critical component of your portfolio. Use them strategically to support your narrative. The more visual representations of your data, the better—higher-quality visualizations will result in a higher grade. Ensure that all graphics follow best practices:\n\nChoose the right chart type: Match the chart to the data (e.g., bar for categories, line for trends).\nMaintain simplicity: Avoid clutter and focus on the essential message.\nUse appropriate scales: Ensure axes have correct and intuitive scaling to avoid misinterpretation.\nLabel axes clearly: Include meaningful axis labels with units (e.g., “Temperature (°C)” or “Revenue ($)”).\nInclude descriptive titles: Provide a concise, informative title that explains the visualization’s main takeaway.\nEnsure consistency: Use uniform color schemes, fonts, and styles across all charts in a presentation.\nHighlight key data: Use contrasting colors or annotations to draw attention to important points or trends.\nKeep proportions accurate: Maintain correct data-to-visual size relationships to avoid distortion.\nConsider the audience: Tailor the level of detail and style to the audience’s technical proficiency.\nTest readability: Ensure fonts, colors, and elements are clear and legible in various formats and sizes.\nUse interactivity carefully: Interactive features should add clarity, not complexity, to the visual."
+  },
+  {
+    "objectID": "instructions/overview.html#coding",
+    "href": "instructions/overview.html#coding",
+    "title": "Project instruction:",
+    "section": "Coding",
+    "text": "Coding\n\nPractice First (Optional but Recommended)\nWhile not required, practice is highly beneficial. It’s also a good habit to write your code from scratch, as this will build your problem-solving skills. You can use the code provided by professors as a reference, but always strive to write your own. Starting with a blank page is a valuable practice.\nTo get comfortable with the methods, review and modify the R and Python codes provided in class. Try applying these to your project data and experiment with creating small toy datasets, such as a CSV file or a text corpus. This helps you understand the structure of the data and what the algorithms are doing."
+  },
+  {
+    "objectID": "instructions/overview.html#debugging",
+    "href": "instructions/overview.html#debugging",
+    "title": "Project instruction:",
+    "section": "Debugging",
+    "text": "Debugging\n\nAlways remember the following Debugging Steps:\n\nStep A: Copy the error message and search it online (Google or similar).\nStep B: Look through forums or documentation to find a solution.\nStep C: Implement the solution.\nStep D: If you’re still stuck, ask for help from classmates, TAs, or professors.\nStep E: Move on to the next issue and repeat the process.\n\n\n(Note: You can also use ChatGPT for debugging, but be cautious as the solutions may sometimes be inaccurate or incomplete.)"
+  },
+  {
+    "objectID": "instructions/overview.html#filetypes",
+    "href": "instructions/overview.html#filetypes",
+    "title": "Project instruction:",
+    "section": "Filetypes",
+    "text": "Filetypes\nIt is up to you when to use .qmd vs .ipynb to structure your code, however, I would recommend using the following simples rules\n\n\nIf the file has ANY code in it, either R or python, the ALWAYS use .ipynb\n\n\nDo not mix R and Python in the same notebook.\n\n\nIf the file is purely markdown and does not require any code, use .qmd\n\n\nUse Quarto includes to modularize your content. See below for more details. This is also done frequently in the skeleton of the website."
+  },
+  {
+    "objectID": "instructions/overview.html#quarto-includes",
+    "href": "instructions/overview.html#quarto-includes",
+    "title": "Project instruction:",
+    "section": "Quarto Includes",
+    "text": "Quarto Includes\nIf you’re using Quarto, it’s highly recommended to take advantage of includes (e.g., {{&lt; include _content.qmd &gt;}}). These are optional but offer powerful benefits in terms of modularization and organization of your content.\n\nWhy Use Quarto Includes?\n\nModularization: Breaking your project into smaller, reusable chunks makes it easier to manage complex documents. By separating content into smaller files, you can work on specific sections without altering the entire project.\nReusability: Once you’ve created content blocks using includes, you can reuse them across multiple documents. This is especially helpful for repetitive sections like headers, footers, or standard information blocks.\nConsistency: With includes, you ensure uniformity across various documents or sections. If you need to update shared content, you can modify one include file, and the changes will automatically propagate wherever it’s used.\nSimplifies Collaboration: In team settings, includes enable different contributors to work on different sections simultaneously, reducing the risk of merge conflicts and making the project easier to maintain.\nImproves Organization: Includes help keep your main files clean and focused. Instead of having long, cluttered documents, you can keep things streamlined by loading content from separate, well-organized files."
+  },
+  {
+    "objectID": "instructions/github-usage.html",
+    "href": "instructions/github-usage.html",
+    "title": "GitHub",
+    "section": "",
+    "text": "Your project will be fully transparent, with the source code hosted on GitHub. This platform will serve as the main repository for your project code, documentation, and website. Proper organization and frequent updates are key for effective collaboration and project management.\n\n\n\nYou MUST use GitHub Classroom to create your project repository. This ensures that TAs can access your code and track your progress.\nClone the repository to your local machine, which provides a basic directory structure.\n\n\n\n\nYou will be graded on how effectively you use Git, which includes:\n\nThe incremental nature of your progress\nThe frequency and quality of your commits\nThe structure and organization of your repository\nHow well you follow these GitHub guidelines\n\nBe sure to make regular commits to GitHub (e.g., git add, git commit, git push) to sync your work and ensure a smooth development process.\n\n\n\nInclude an informative README file that explains the purpose of the project.\nOrganize your files logically to make it easier for collaborators and TAs to navigate.\nEnsure all files are well-documented, and code is easy to follow.\n\n\n\n\n\nCommit your code frequently with meaningful commit messages that reflect the changes made. This will make it easier to track progress and roll back changes if necessary.\n\nExample of a good commit message: Added data cleaning script for tabular data\nExample of a poor commit message: Fix\n\n\n\n\n\n\nDo not store your data in your repository.\n\nData should be store in the raw-data folder and the processed-data folder, these folders should be added to .gitignore.\nExample: Use Google Drive or GU Domains for large data files and provide access links within your repository.\n\n\n\n\n\n\nSync your GitHub repository with your GU Domains website before submission deadlines to keep your website up to date.\nEnsure your code repository and website are always in sync, especially before final submission, to avoid losing marks.\n\n\n\n\n\nWrite clear and detailed documentation for each file and function in your project.\nInclude a README.md file in your repository that explains the purpose of the project, how to run the code, and any necessary dependencies.\n\n\n\n\n\nIf you are working in a group (maximum of 3 students), use GitHub’s collaboration features effectively:\n\nTask Assignment:\n\nAssign tasks to different team members using GitHub Issues or Project Boards.\n\nBranching and Pull Requests:\n\nUse branches for feature development and pull requests for code review before merging changes into the main branch.\n\nCommunication:\n\nRegularly communicate and review code with your teammates to avoid conflicts.\n\nEqual Contribution:\n\nEnsure that all team members contribute equally to the project. Unequal contributions will negatively affect individual grades.\nImportant: Any team member not contributing equally can be flagged by the group and may be penalized after review.\n\nDocumentation of Contributions:\n\nDocument each member’s contribution clearly in the collaborators.qmd file, specifying who worked on which aspects of the project.\n\nCode Reviews:\n\nConduct peer code reviews before merging changes into the main branch to maintain code quality and consistency."
+  },
+  {
+    "objectID": "instructions/github-usage.html#repository-setup",
+    "href": "instructions/github-usage.html#repository-setup",
+    "title": "GitHub",
+    "section": "",
+    "text": "You MUST use GitHub Classroom to create your project repository. This ensures that TAs can access your code and track your progress.\nClone the repository to your local machine, which provides a basic directory structure."
+  },
+  {
+    "objectID": "instructions/github-usage.html#expectations-for-github-usage",
+    "href": "instructions/github-usage.html#expectations-for-github-usage",
+    "title": "GitHub",
+    "section": "",
+    "text": "You will be graded on how effectively you use Git, which includes:\n\nThe incremental nature of your progress\nThe frequency and quality of your commits\nThe structure and organization of your repository\nHow well you follow these GitHub guidelines\n\nBe sure to make regular commits to GitHub (e.g., git add, git commit, git push) to sync your work and ensure a smooth development process.\n\n\n\nInclude an informative README file that explains the purpose of the project.\nOrganize your files logically to make it easier for collaborators and TAs to navigate.\nEnsure all files are well-documented, and code is easy to follow.\n\n\n\n\n\nCommit your code frequently with meaningful commit messages that reflect the changes made. This will make it easier to track progress and roll back changes if necessary.\n\nExample of a good commit message: Added data cleaning script for tabular data\nExample of a poor commit message: Fix\n\n\n\n\n\n\nDo not store your data in your repository.\n\nData should be store in the raw-data folder and the processed-data folder, these folders should be added to .gitignore.\nExample: Use Google Drive or GU Domains for large data files and provide access links within your repository.\n\n\n\n\n\n\nSync your GitHub repository with your GU Domains website before submission deadlines to keep your website up to date.\nEnsure your code repository and website are always in sync, especially before final submission, to avoid losing marks.\n\n\n\n\n\nWrite clear and detailed documentation for each file and function in your project.\nInclude a README.md file in your repository that explains the purpose of the project, how to run the code, and any necessary dependencies."
+  },
+  {
+    "objectID": "instructions/github-usage.html#collaboration-in-groups-if-applicable",
+    "href": "instructions/github-usage.html#collaboration-in-groups-if-applicable",
+    "title": "GitHub",
+    "section": "",
+    "text": "If you are working in a group (maximum of 3 students), use GitHub’s collaboration features effectively:\n\nTask Assignment:\n\nAssign tasks to different team members using GitHub Issues or Project Boards.\n\nBranching and Pull Requests:\n\nUse branches for feature development and pull requests for code review before merging changes into the main branch.\n\nCommunication:\n\nRegularly communicate and review code with your teammates to avoid conflicts.\n\nEqual Contribution:\n\nEnsure that all team members contribute equally to the project. Unequal contributions will negatively affect individual grades.\nImportant: Any team member not contributing equally can be flagged by the group and may be penalized after review.\n\nDocumentation of Contributions:\n\nDocument each member’s contribution clearly in the collaborators.qmd file, specifying who worked on which aspects of the project.\n\nCode Reviews:\n\nConduct peer code reviews before merging changes into the main branch to maintain code quality and consistency."
+  },
+  {
+    "objectID": "instructions/quarto-tips.html",
+    "href": "instructions/quarto-tips.html",
+    "title": "Quarto Tips",
+    "section": "",
+    "text": "It is up to you when to use .qmd vs .ipynb to structure your code, however, I would recommend using the following simples rules\n\n\nIf the file has ANY code in it, either R or python, the ALWAYS use .ipynb\n\n\nDo not mix R and Python in the same notebook.\n\n\nIf the file is purely markdown and does not require any code, use .qmd\n\n\nUse Quarto includes to modularize your content. See below for more details. This is also done frequently in the skeleton of the website.\n\n\n\n\n\nIf you’re using Quarto, it’s highly recommended to take advantage of includes (e.g., {{&lt; include _content.qmd &gt;}}). These are optional but offer powerful benefits in terms of modularization and organization of your content.\n\n\n\nModularization: Breaking your project into smaller, reusable chunks makes it easier to manage complex documents. By separating content into smaller files, you can work on specific sections without altering the entire project.\nReusability: Once you’ve created content blocks using includes, you can reuse them across multiple documents. This is especially helpful for repetitive sections like headers, footers, or standard information blocks.\nConsistency: With includes, you ensure uniformity across various documents or sections. If you need to update shared content, you can modify one include file, and the changes will automatically propagate wherever it’s used.\nSimplifies Collaboration: In team settings, includes enable different contributors to work on different sections simultaneously, reducing the risk of merge conflicts and making the project easier to maintain.\nImproves Organization: Includes help keep your main files clean and focused. Instead of having long, cluttered documents, you can keep things streamlined by loading content from separate, well-organized files."
+  },
+  {
+    "objectID": "instructions/quarto-tips.html#filetypes",
+    "href": "instructions/quarto-tips.html#filetypes",
+    "title": "Quarto Tips",
+    "section": "",
+    "text": "It is up to you when to use .qmd vs .ipynb to structure your code, however, I would recommend using the following simples rules\n\n\nIf the file has ANY code in it, either R or python, the ALWAYS use .ipynb\n\n\nDo not mix R and Python in the same notebook.\n\n\nIf the file is purely markdown and does not require any code, use .qmd\n\n\nUse Quarto includes to modularize your content. See below for more details. This is also done frequently in the skeleton of the website."
+  },
+  {
+    "objectID": "instructions/quarto-tips.html#quarto-includes",
+    "href": "instructions/quarto-tips.html#quarto-includes",
+    "title": "Quarto Tips",
+    "section": "",
+    "text": "If you’re using Quarto, it’s highly recommended to take advantage of includes (e.g., {{&lt; include _content.qmd &gt;}}). These are optional but offer powerful benefits in terms of modularization and organization of your content.\n\n\n\nModularization: Breaking your project into smaller, reusable chunks makes it easier to manage complex documents. By separating content into smaller files, you can work on specific sections without altering the entire project.\nReusability: Once you’ve created content blocks using includes, you can reuse them across multiple documents. This is especially helpful for repetitive sections like headers, footers, or standard information blocks.\nConsistency: With includes, you ensure uniformity across various documents or sections. If you need to update shared content, you can modify one include file, and the changes will automatically propagate wherever it’s used.\nSimplifies Collaboration: In team settings, includes enable different contributors to work on different sections simultaneously, reducing the risk of merge conflicts and making the project easier to maintain.\nImproves Organization: Includes help keep your main files clean and focused. Instead of having long, cluttered documents, you can keep things streamlined by loading content from separate, well-organized files."
+  },
+  {
+    "objectID": "instructions/website-structure.html",
+    "href": "instructions/website-structure.html",
+    "title": "Website project structure",
+    "section": "",
+    "text": "A skeleton of the recommended version of the website is provided in the github classroom repository.\nBroadly speaking it has the following directory tree structure.\nUNFINISHED\n\n\nIt is required that you build your website with Quarto.\n\n\n\nYou MUST host your website on the Georgetown Domains web space.\nNo exceptions. You may NOT use anything other than Georgetown Domains to host your website. For example, no RPubs, WordPress, Squarespace, or any other website development toolset. Failure to comply with this rule will result in a ZERO.\n\n\n\nKnowing your audience in data science writing is crucial because it shapes how you present information. Technical stakeholders may require detailed explanations of methodologies, while non-technical audiences need clear, simplified insights and data-driven conclusions. Tailoring your message ensures your analysis is both understandable and impactful, driving informed decision-making.\n\nExamples of technical audiences include data scientists, software engineers, and IT professionals. These individuals expect detailed explanations of models, algorithms, methodologies, or system architectures, and they’re comfortable with technical jargon, such as discussing hyperparameters, programming frameworks, or machine learning techniques.\nNon-technical audiences include executives, marketing teams, and clients. They prioritize high-level insights, actionable results, and visualizations that convey the impact of data without requiring an understanding of complex methods. For instance, a CEO may want to know how a model affects business strategy or revenue, without diving into the underlying technical details.\n\nIn this project you will cater to both audiences. This is done by having regions of your website for both audiences (see website struture)"
+  },
+  {
+    "objectID": "instructions/website-structure.html#website-development",
+    "href": "instructions/website-structure.html#website-development",
+    "title": "Website project structure",
+    "section": "",
+    "text": "It is required that you build your website with Quarto."
+  },
+  {
+    "objectID": "instructions/website-structure.html#website-hosting",
+    "href": "instructions/website-structure.html#website-hosting",
+    "title": "Website project structure",
+    "section": "",
+    "text": "You MUST host your website on the Georgetown Domains web space.\nNo exceptions. You may NOT use anything other than Georgetown Domains to host your website. For example, no RPubs, WordPress, Squarespace, or any other website development toolset. Failure to comply with this rule will result in a ZERO."
+  },
+  {
+    "objectID": "instructions/website-structure.html#the-two-audiences",
+    "href": "instructions/website-structure.html#the-two-audiences",
+    "title": "Website project structure",
+    "section": "",
+    "text": "Knowing your audience in data science writing is crucial because it shapes how you present information. Technical stakeholders may require detailed explanations of methodologies, while non-technical audiences need clear, simplified insights and data-driven conclusions. Tailoring your message ensures your analysis is both understandable and impactful, driving informed decision-making.\n\nExamples of technical audiences include data scientists, software engineers, and IT professionals. These individuals expect detailed explanations of models, algorithms, methodologies, or system architectures, and they’re comfortable with technical jargon, such as discussing hyperparameters, programming frameworks, or machine learning techniques.\nNon-technical audiences include executives, marketing teams, and clients. They prioritize high-level insights, actionable results, and visualizations that convey the impact of data without requiring an understanding of complex methods. For instance, a CEO may want to know how a model affects business strategy or revenue, without diving into the underlying technical details.\n\nIn this project you will cater to both audiences. This is done by having regions of your website for both audiences (see website struture)"
+  },
+  {
+    "objectID": "technical-details/data-collection/main.html",
+    "href": "technical-details/data-collection/main.html",
+    "title": "Data Collection",
+    "section": "",
+    "text": "On this page, you will focus on data collection, which is an essential step for future analysis. You should have already selected a specific data-science question that can be addressed in a data-driven way.\nIt is recommended that you focus on one or two of the following data format, text, tabular, image, geospatial, or network data.\nTabular (e.g. CSV files) and text formats are highly recommended, as these are covered most thoroughly in the course. Deviating from these formats may require additional work on your end. Please avoid timeseries data formats, as these require special methods not covered in the course. You can include as many additional formats as you want. Your project will revolve around the data you gather and will include data collection, analysis, visualization, and storytelling."
+  },
+  {
+    "objectID": "technical-details/data-collection/main.html#saving-the-raw-data",
+    "href": "technical-details/data-collection/main.html#saving-the-raw-data",
+    "title": "Data Collection",
+    "section": "Saving the raw data",
+    "text": "Saving the raw data\n\nDuring the collection phase, save the collected data locally to the raw-data folder, in the root of the project, for later processing.\n\nDo not sync this folder to GitHub.\n\nYou should also save files you download manually from online to this folder"
+  },
+  {
+    "objectID": "technical-details/data-collection/main.html#requirements",
+    "href": "technical-details/data-collection/main.html#requirements",
+    "title": "Data Collection",
+    "section": "Requirements:",
+    "text": "Requirements:\n\nYour data must be relevant to the project’s overall goals and help solve your research questions.\nYou must use at least one API to collect your data.\nEnsure you have at least one regression target: a continuous quantity that can be used for regression prediction with other features.\nEnsure you have at least one binary classification target: a two-class (A,B) label that can be predicted using other features.\nEnsure you have at least one multi-classification target: a multi-class (A,B,C …) label that can be predicted using other features.\nDo not use a Kaggle topic—this project is meant to simulate a real-world project. Kaggle datasets are typically too clean and have already been prepped for analysis, which doesn’t align with the project’s goals.\n\nRemember, data is about quality, not quantity, so avoid handling large datasets unless necessary. Focus on data that tells a compelling story and supports the techniques you will apply (e.g., clustering, classification, regression)."
+  },
+  {
+    "objectID": "technical-details/data-collection/main.html#exmaple",
+    "href": "technical-details/data-collection/main.html#exmaple",
+    "title": "Data Collection",
+    "section": "Exmaple",
+    "text": "Exmaple\nIn the following code, we first utilized the requests library to retrieve the HTML content from the Wikipedia page. Afterward, we employed BeautifulSoup to parse the HTML and locate the specific table of interest by using the find function. Once the table was identified, we extracted the relevant data by iterating through its rows, gathering country names and their respective populations. Finally, we used Pandas to store the collected data in a DataFrame, allowing for easy analysis and visualization. The data could also be optionally saved as a CSV file for further use.1\n\nimport requests\nfrom bs4 import BeautifulSoup\nimport pandas as pd\n\n# Step 1: Send a request to Wikipedia page\nurl = 'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population'\nresponse = requests.get(url)\n\n# Step 2: Parse the page content using BeautifulSoup\nsoup = BeautifulSoup(response.content, 'html.parser')\n\n# Step 3: Find the table containing the data (usually the first table for such lists)\ntable = soup.find('table', {'class': 'wikitable'})\n\n# Step 4: Extract data from the table rows\ncountries = []\npopulations = []\n\n# Iterate over the table rows\nfor row in table.find_all('tr')[1:]:  # Skip the header row\n    cells = row.find_all('td')\n    if len(cells) &gt; 1:\n        country = cells[1].text.strip()  # The country name is in the second column\n        population = cells[2].text.strip()  # The population is in the third column\n        countries.append(country)\n        populations.append(population)\n\n# Step 5: Create a DataFrame to store the results\ndata = pd.DataFrame({\n    'Country': countries,\n    'Population': populations\n})\n\n# Display the scraped data\nprint(data)\n\n# Optionally save to CSV\ndata.to_csv('../../raw-data/countries_population.csv', index=False)\n\n                                 Country     Population\n0                                  World  8,119,000,000\n1                                  China  1,409,670,000\n2                          1,404,910,000          17.3%\n3                          United States    335,893,238\n4                              Indonesia    281,603,800\n..                                   ...            ...\n235                   Niue (New Zealand)          1,681\n236                Tokelau (New Zealand)          1,647\n237                         Vatican City            764\n238  Cocos (Keeling) Islands (Australia)            593\n239                Pitcairn Islands (UK)             35\n\n[240 rows x 2 columns]"
+  },
+  {
+    "objectID": "technical-details/data-collection/methods.html",
+    "href": "technical-details/data-collection/methods.html",
+    "title": "Methods",
+    "section": "",
+    "text": "Methods\nDocument an overview summary of the methods you used on this page"
+  },
+  {
+    "objectID": "report/report.html",
+    "href": "report/report.html",
+    "title": "Final report",
+    "section": "",
+    "text": "This report is for a Non-technical audience, e.g. general public, executives, marketing teams, and clients. It should prioritize high-level insights, actionable results, and visualizations that convey the impact of data without requiring an understanding of complex methods. For instance, a CEO may want to know how a model affects business strategy or revenue, without diving into the underlying technical details."
+  },
+  {
+    "objectID": "report/report.html#case-1-academic-oriented-projects",
+    "href": "report/report.html#case-1-academic-oriented-projects",
+    "title": "Final report",
+    "section": "Case-1: Academic oriented projects",
+    "text": "Case-1: Academic oriented projects\nWhen presenting an academic project to the general public, the focus is on communicating key findings and relevant insights in a way that is engaging and easy to understand. The goal is to break down complex research concepts while highlighting their real-world implications and societal benefits. Avoid technical jargon and focus on storytelling, impact, and accessibility.\n\n1. Introduction\n\nPurpose: Provide an accessible introduction to the project.\nBackground: Offer context by explaining the motivation behind the research and why it matters.\nKey Questions: What questions are you trying to answer, and why are they important?\n\nExample: “This study aims to understand how climate change affects local ecosystems, which is essential for protecting wildlife and biodiversity.”\n\n\n2. Objective\n\nPurpose: Clearly define the goal or purpose of the research.\nReal-World Relevance: Explain how the project relates to issues or challenges the general public can understand (e.g., health, environment, technology).\n\nExample: “Our objective is to identify the effects of air pollution on public health in urban areas to recommend better policies.”\n\n\n3. Key Findings\n\nPurpose: Present the most important insights from the research.\nPlain Language: Avoid technical terms and explain the findings in a way that is easy to grasp.\nImpact: Highlight how these findings affect real-world issues or help advance societal understanding.\n\nExample: “We found that air pollution in cities contributes to a 20% higher risk of respiratory diseases, affecting children and the elderly the most.”\n\n\n4. Methodology Overview (Simplified)\n\nPurpose: Briefly explain how the research was conducted, but keep it high-level.\nPlain Language: Describe the methods in an intuitive way, focusing on what the audience needs to know (e.g., data sources, experiments, or surveys).\n\nExample: “We analyzed air quality data from 50 cities and conducted surveys with 10,000 residents to measure the health impact of pollution.”\n\n\n5. Visualizations\n\nPurpose: Use easy-to-understand graphs, infographics, or charts to help convey key findings.\nAccessibility: Ensure all visuals are clearly labeled, with simple explanations of what the audience is seeing.\nEngagement: Visuals should engage the public by making the findings more relatable and easier to grasp.\n\nExample: A map showing regions most affected by pollution, paired with a bar chart depicting the increase in health risks.\n\n\n6. Societal Implications\n\nPurpose: Explain why the findings matter in the context of broader societal issues.\nRelevance to Public: Connect the research to real-world outcomes that the general public cares about (e.g., public health, environmental protection, technological advances).\nPotential Solutions: Offer suggestions or recommendations based on the research for improving outcomes.\n\nExample: “This research shows the urgent need for cleaner air policies to reduce health risks, particularly in densely populated areas.”\n\n\n7. Call to Action or Recommendations\n\nPurpose: Provide actionable steps or policy recommendations based on the research.\nAudience Engagement: Encourage readers to take action, support the cause, or further explore the topic.\nNext Steps: Outline how the findings could be applied in the future or how further research could build on this work.\n\nExample: “We recommend that city planners invest in green spaces and pollution-reducing technologies to protect public health.”\n\n\n8. Conclusion\n\nPurpose: Recap the main findings and their importance.\nBroader Impact: Reinforce how this project contributes to a better understanding of the issue at hand and how it might shape future actions or policies.\n\nExample: “By understanding the impacts of pollution on health, we can work together to create healthier, more sustainable cities.”\n\n\nFinal Tips:\n\nKeep the language simple and engaging: Avoid complex terminology or deep dives into methodology unless it’s essential for understanding.\nUse storytelling: Frame your findings as a narrative that highlights real-world impact and relevance.\nFocus on visual aids: Non-technical audiences benefit from clear, visual representations of data and findings.\nRelate to everyday life: Whenever possible, link the research to familiar experiences or commonly understood societal challenges."
+  },
+  {
+    "objectID": "report/report.html#case-2-buiness-oriented-projects",
+    "href": "report/report.html#case-2-buiness-oriented-projects",
+    "title": "Final report",
+    "section": "Case-2: Buiness oriented projects",
+    "text": "Case-2: Buiness oriented projects\nHere’s an outline of the sections to include in the report:\n\nOverview: Creating a Data Science Report for Non-Technical Audiences\nWhen preparing a data science report for non-technical audiences like executives, marketing teams, or clients, the focus should be on clear, actionable insights. Provide a high-level overview of findings, emphasizing their business impact and strategic relevance rather than technical details.\n\n\n1. Executive Summary\n\nPurpose: Briefly summarize the key findings and relevance to business goals.\nKey Points: Highlight the top takeaways in 2-3 sentences.\nCall to Action: Outline next steps or recommendations.\n\nExample: “This report predicts customer churn rates and offers retention strategies to reduce churn by 15%.”\n\n\n2. Objective\n\nPurpose: State the problem or question the analysis addresses.\nBusiness Context: Explain why this issue matters and its potential business impact.\n\nExample: “This project aims to identify drivers of customer churn. Reducing churn by 5% could boost revenue by $2M.”\n\n\n3. Key Insights\n\nPurpose: Present the most impactful findings simply.\nActionable Insights: Focus on insights that influence decision-making.\nBusiness Impact: Explain how insights affect business goals (e.g., cost savings, increased revenue).\n\nExample: “Customers who interact with support at least twice within 30 days are 25% less likely to churn.”\n\n\n4. Visualizations\n\nPurpose: Use clear, intuitive graphs to convey key insights quickly.\nTypes of Visuals: Bar charts, line graphs, or heat maps to show trends or comparisons.\nContext: Ensure visualizations have concise labels and explanations.\n\nExample: A bar chart showing churn likelihood based on customer engagement.\n\n\n5. Business Implications\n\nPurpose: Explain how findings improve business outcomes.\nActionable Steps: Provide specific, actionable recommendations.\nStrategic Relevance: Align insights with business objectives like revenue growth or cost reduction.\n\nExample: “Focus retention efforts on low-engagement customers through personalized discounts or support.”\n\n\n6. Recommendations\n\nPurpose: Provide clear, actionable recommendations.\nNext Steps: Outline immediate actions and timelines.\nBusiness Projections: Quantify the impact of recommendations (e.g., increased retention, revenue growth).\n\nExample: “Implement an automated retention campaign, expected to reduce churn by 10%, increasing revenue by $500K annually.”\n\n\n7. Conclusion\n\nPurpose: Summarize key findings and their business impact.\nCall to Action: Provide a clear recommendation for next steps.\n\nExample: “Focus on key drivers of churn to reduce customer loss and boost profitability.”\n\n\n8. Appendix (Optional)\n\nPurpose: Include additional charts or detailed explanations for those seeking deeper insights.\nSimplified Methods: Provide non-technical descriptions of models or methods, focusing on their relevance to findings.\n\n\n\nFinal Tips\n\nSimplicity: Avoid jargon; focus on business-relevant insights.\nBe Visual: Use charts or graphs over dense text.\nEmphasize Impact: Always link data insights to business outcomes."
+  },
+  {
+    "objectID": "index.html#what-to-include-on-this-page",
+    "href": "index.html#what-to-include-on-this-page",
+    "title": "Landing page",
+    "section": "What to Include on This Page",
+    "text": "What to Include on This Page\nThis is the landing page for your project. Content from this page can be reused in sections of your final report."
+  },
+  {
+    "objectID": "index.html#create-an-about-you-page",
+    "href": "index.html#create-an-about-you-page",
+    "title": "Landing page",
+    "section": "Create an “About You” Page",
+    "text": "Create an “About You” Page\n\nDevelop your “About You” page. You can reuse content from previous assignments.\nYou can include the content here or on a separate page.\n\nIt’s recommended to create one “About You” page for all DSAN projects, with links to your various class projects."
+  },
+  {
+    "objectID": "index.html#create-a-landing-page-for-your-project",
+    "href": "index.html#create-a-landing-page-for-your-project",
+    "title": "Landing page",
+    "section": "Create a Landing Page for Your Project",
+    "text": "Create a Landing Page for Your Project\n\nSummarize your topic, its significance, related work, and the questions you plan to explore.\nCite at least 3 academic publications per group member, and include internal academic citations.\nDraft an introduction with at least 5 research questions. These may evolve as your project progresses, since data science is an iterative process.\n\nInclude your data science questions on this page.\n\n\n\nAdditional Ideas for This Page\n\nAudience: Who is this for? Data professionals, businesses, researchers, or curious readers.\nHeadline: A captivating title introducing the data science theme (e.g., “Unlocking Insights Through Data Stories”).\nIntroduction: A brief, engaging overview of what the website offers (e.g., data-driven stories, insights, or case studies).\nQuestions You Are Addressing: What do you hope to learn?\nMotivation: Explain why this topic matters, highlighting the importance of data in solving real-world problems.\nKey Topics: List the main focus areas (e.g., machine learning, data visualization, predictive modeling).\nUse Cases/Examples: A brief teaser of compelling stories or case studies you’ve worked on.\nCall to Action: Invite visitors to explore the content, follow along, or contact you for more information.\nVisual/Infographic: Add a simple graphic or visual element to make the page more dynamic."
+  }
+]

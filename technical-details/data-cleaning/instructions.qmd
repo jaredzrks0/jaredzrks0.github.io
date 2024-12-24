@@ -1,0 +1,11 @@
+# Summary
+
+Like any project, cleaning our raw data collected in the prior step is critical to ensuring we have a dataset that can be explored and modeled to extract insights. In this section, we read in the raw scraped data, and process in the following steps:
+
+- Reading in all the scraped data
+- Looking carefully through each dataset and:
+  - Ensuring data is read in properly
+  - Checking for and potentially removing missing values
+  - Dropping unnecessary columns that do not relate to the research questions
+  - Creating new features for for analysis
+  - Merging datasets together into a singular final dataset each for batters and pitchers
