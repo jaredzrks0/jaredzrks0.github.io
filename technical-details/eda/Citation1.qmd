@@ -1,5 +1,0 @@
-Here too, we see a few very important takeaways:
-
-1. The distribution of voting outcomes changes over the course of the major eras. As we move throughout history, eliminations take a backseat role to limbos, meaning that in the first few attemps on the ballot, players were more likely to receive very low shares of the vote. Additionally, while still a very low total share, we do see the election share slowing rising. Recall however, that the overall number of elections is not increasing on an annual basis as evidence in the above line chart.
-
-2. The total number of people/votes drastically decreases over time. This is likely caused by the creation of the BBWAA selection committee that determines the players on the ballot each year, and limits it to 40, which occured in 1968[@bbwa_bbwa_nodate]
