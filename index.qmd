@@ -26,10 +26,10 @@ Welcome to the official website of **Jared Zirkes**. On this site, you'll find a
 
 ### Projects
 
-Here are some of the key data science projects I've worked on:
+Below are some of the key data science projects I've worked on:
 
-- **Baseball Simulation**: A machine learning model to simulate MLB plate appearances based on player and team data, used to simulate MLB games and player stat lines.
 - **Baseball Hall of Fame Analysis**: A project aimed at analyzing historical BBWAA Baseball Hall of Fame voting trends, and utilizing career statistics of players to predict future Hall of Fame inductees.
+- **MLB Game Simulation**: A machine learning model to simulate MLB plate appearances based on player and team data, used to simulate MLB games and player stat lines.
 - **News Recommender System**: A document retrieval system designed to recommend news articles from diverse viewpoints.
 
 
