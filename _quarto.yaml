@@ -6,7 +6,7 @@ website:
   title: "Jared Zirkes - Data Science Portfolio"
   description: "A portfolio of my data science projects."
   navbar:
-    left:
+    left: 
       - href: about-me.qmd
         text: About the Author
       - text: "Home"
