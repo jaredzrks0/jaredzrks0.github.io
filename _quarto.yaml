@@ -4,12 +4,20 @@ project:
 
 website:
   title: "Jared Zirkes - Data Science Portfolio"
-  description: "A portfolio showcasing my data science projects."
+  description: "A portfolio of my data science projects."
   navbar:
     left:
+      - href: about-me.qmd
+        text: About the Author
       - text: "Home"
         href: "index.html"
-      - text: "Projects"
+      - text: "Projects Descriptions"
         href: "projects.html"
       - text: "Contact"
         href: "contact.html"
+
+format:
+  html:
+    theme: 
+      light: flatly
+      dark: darkly

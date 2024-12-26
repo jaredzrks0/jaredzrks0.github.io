@@ -1,9 +1,10 @@
 ---
-title: "Projects - Jared Zirkes"
-author: "Jared Zirkes"
+title: "My Projects"
 output: 
   html_document:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
     toc: true
     navbar:
       title: "Projects"
@@ -14,40 +15,35 @@ output:
           href: "contact.html"
 ---
 
-# Data Science Projects
+## Baseball Hall of Fame Analysis
 
-Here are some of the data science projects I have worked on:
+An analysis of BBWAA Hall of Fame voting. This project aims to determine what factors make an MLB player likely to be inducted, analyze Hall of Fame trends over time, and predict likely future inductees. 
 
-## MLB Hall of Fame Career Stats
+- **Technologies used**: Python, Pandas, Scikit-learn, Plotly
+- **Key Features**: Data Cleaning, Eata Visualization, Predictive Modeling
 
-In this project, I analyze career statistics of MLB players to predict future Hall of Fame inductees. The model uses various performance metrics and historical voting trends to make predictions.
+<a href="https://www.jzirkes.me/Baseball-HOF-Analysis/" target="_blank">View Project</a>
 
-- **Technologies used**: Python, Pandas, Scikit-learn, Matplotlib
-- **Key Features**: Data cleaning, feature engineering, predictive modeling, visualization
-
-[View Project on GitHub](https://github.com/yourusername/mlb-hall-of-fame)
-
----
-
-## News Recommender System
-
-This document retrieval system is designed to recommend articles from diverse viewpoints to users based on their preferences. It uses natural language processing (NLP) to match articles with similar topics.
-
-- **Technologies used**: Python, NLP, Flask, Scikit-learn
-- **Key Features**: Text similarity, machine learning, recommendation systems
-
-[View Project on GitHub](https://github.com/yourusername/news-recommender)
+<a href="https://github.com/jaredzrks0/Baseball-HOF-Analysis" target="_blank">Project GitHub</a>
 
 ---
 
 ## Baseball Simulation
 
-A machine learning model simulating baseball games based on player and team data. This project focuses on creating a realistic simulation by incorporating various factors such as player stats, historical performance, and game conditions.
+Daily Simulation of MLB games. This projet develops a model to predict the outcome of MLB plate appearances based pitch-by-pitch data from Statcast to precict plate appearence results. This model is then leveraged alongside expected lineups, weather, and other outside factors to simulate MLB games and predict outcomes for player statlines.
 
-- **Technologies used**: Python, TensorFlow, Pandas
-- **Key Features**: Simulations, model training, performance analysis
+- **Technologies used**: Python, Pandas, Scikit-learn, TensorFlow
+- **Key Features**: Data Cleaning, Feature Engineering, Predictive Modeling, Simulations
 
-[View Project on GitHub](https://github.com/yourusername/baseball-simulation)
+<a href="https://github.com/jaredzrks0/MLB-Simulation" target="_blank">Project GitHub</a>
 
 ---
 
+## News Recommendation System
+
+A document retrieval system for use in recommending news articles across the political spectrum. The system leverages a COLBERT model checkpoint with further training on a corpus of news articles, and is designed to recommend articles from diverse viewpoints to users based on their preferences.
+
+- **Technologies used**: Python, NLP, Web Scraping
+- **Key Features**: Text Similarity, Machine Learning, Recommendation Systems
+
+<a href="https://github.com/jaredzrks0/DSAN5400_final_project" target="_blank">Project GitHub</a>
