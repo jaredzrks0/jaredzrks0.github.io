@@ -11,14 +11,21 @@
     "href": "projects.html",
     "title": "My Projects",
     "section": "",
-    "text": "An analysis of BBWAA Hall of Fame voting. This project aims to determine what factors make an MLB player likely to be inducted, analyze Hall of Fame trends over time, and predict likely future inductees.\n\nTechnologies used: Python, Pandas, Scikit-learn, Plotly\nKey Features: Data Cleaning, Eata Visualization, Predictive Modeling\n\nView Project\nProject GitHub"
+    "text": "An analysis of BBWAA Hall of Fame voting. This project aims to determine what factors make an MLB player likely to be inducted, analyze Hall of Fame trends over time, and predict likely future inductees.\n\nTechnologies used: Python, Pandas, Scikit-learn, Plotly\nKey Features: Data Cleaning, Data Visualization, Predictive Modeling\n\nView Project\nProject GitHub"
   },
   {
     "objectID": "projects.html#baseball-hall-of-fame-analysis",
     "href": "projects.html#baseball-hall-of-fame-analysis",
     "title": "My Projects",
     "section": "",
-    "text": "An analysis of BBWAA Hall of Fame voting. This project aims to determine what factors make an MLB player likely to be inducted, analyze Hall of Fame trends over time, and predict likely future inductees.\n\nTechnologies used: Python, Pandas, Scikit-learn, Plotly\nKey Features: Data Cleaning, Eata Visualization, Predictive Modeling\n\nView Project\nProject GitHub"
+    "text": "An analysis of BBWAA Hall of Fame voting. This project aims to determine what factors make an MLB player likely to be inducted, analyze Hall of Fame trends over time, and predict likely future inductees.\n\nTechnologies used: Python, Pandas, Scikit-learn, Plotly\nKey Features: Data Cleaning, Data Visualization, Predictive Modeling\n\nView Project\nProject GitHub"
+  },
+  {
+    "objectID": "projects.html#hand-made-regression-algorithms",
+    "href": "projects.html#hand-made-regression-algorithms",
+    "title": "My Projects",
+    "section": "Hand-Made Regression Algorithms",
+    "text": "Hand-Made Regression Algorithms\nAn overview of common regression techniques, and handmade classes for each algorithm. Also includes 3-D plotting of training sets and resulting regression surfaces to understand how each regressor learns data and makes predictions.\nView Project\nProject GitHub"
   },
   {
     "objectID": "projects.html#baseball-simulation",

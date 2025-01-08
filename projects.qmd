@@ -20,11 +20,21 @@ output:
 An analysis of BBWAA Hall of Fame voting. This project aims to determine what factors make an MLB player likely to be inducted, analyze Hall of Fame trends over time, and predict likely future inductees. 
 
 - **Technologies used**: Python, Pandas, Scikit-learn, Plotly
-- **Key Features**: Data Cleaning, Eata Visualization, Predictive Modeling
+- **Key Features**: Data Cleaning, Data Visualization, Predictive Modeling
 
 <a href="https://www.jzirkes.me/Baseball-HOF-Analysis/" target="_blank">View Project</a>
 
 <a href="https://github.com/jaredzrks0/Baseball-HOF-Analysis" target="_blank">Project GitHub</a>
+
+---
+
+## Hand-Made Regression Algorithms
+
+An overview of common regression techniques, and handmade classes for each algorithm. Also includes 3-D plotting of training sets and resulting regression surfaces to understand how each regressor learns data and makes predictions.
+
+<a href="https://www.jzirkes.me/handmade_algorithms" target="_blank">View Project</a>
+
+<a href="https://github.com/jaredzrks0/handmade_algorithms" target="_blank">Project GitHub</a>
 
 ---
 
