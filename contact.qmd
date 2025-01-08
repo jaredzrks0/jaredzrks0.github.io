@@ -1,9 +1,7 @@
 ---
-title: "Contact - Jared Zirkes"
-author: "Jared Zirkes"
+title: "Contact Me"
 output: 
   html_document:
-    theme: cosmo
     navbar:
       title: "Contact"
       left:
@@ -15,11 +13,11 @@ output:
 
 # Contact Me
 
-I am always open to collaboration, inquiries, or just connecting with other professionals. Feel free to reach out to me!
+I am always open to collaboration, inquiries, or just connecting! Feel free to reach out or explore my work at the following sources:
 
-- **Email**: [jared@example.com](mailto:jared@example.com)
-- **LinkedIn**: [linkedin.com/in/jaredzirkes](https://www.linkedin.com/in/jaredzirkes)
-- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
+- **Email**: [jaredzrks0@gmail.com.com](mailto:jaredzrks0@gmail.com)
+- **LinkedIn**: [linkedin.com/in/jaredzirkes](https://www.linkedin.com/in/jaredzirkes/)
+- **GitHub**: [github.com/yourusername](https://github.com/jaredzrks0?tab=repositories)
 
 Looking forward to hearing from you!
 

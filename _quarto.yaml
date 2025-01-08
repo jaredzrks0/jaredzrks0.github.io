@@ -7,11 +7,9 @@ website:
   description: "A portfolio of my data science projects."
   navbar:
     left: 
-      - href: about-me.qmd
-        text: About the Author
       - text: "Home"
         href: "index.html"
-      - text: "Projects Descriptions"
+      - text: "Projects"
         href: "projects.html"
       - text: "Contact"
         href: "contact.html"

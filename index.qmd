@@ -33,11 +33,11 @@ Below are some of the key data science projects I've worked on:
 - **News Recommender System**: A document retrieval system designed to recommend news articles from diverse viewpoints.
 
 
-For more details, visit each individual project page. Additionally, for a full list of all my projects, check out the 'All Projects' page!
+For more details, visit each individual project page. Additionally, for a full list of all my projects, check out the 'Projects' page!
 
 ### Contact
 
-Feel free to reach out to me via [email](mailto:jaredzrks0@gmail.com) for collaboration, inquiries, or just to connect!
+Feel free to reach out via [email](mailto:jaredzrks0@gmail.com) for collaboration, inquiries, or just to connect!
 
 ---
 
